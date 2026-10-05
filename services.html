@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Services — Flash Photography</title>
+<meta name="description" content="Photography, videography and printing services by Flash Photography.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   TOKENS
+   ============================================================ */
+:root{
+  --ink:        #0b1320;
+  --ink-soft:   #162233;
+  --cream:      #f4f7f9;
+  --muted:      #5e6f82;
+  --brand-blue: #135ba0;
+  --brand-red:  #88252a;
+  --brand-red-light: #a12c32;
+  --line:       rgba(11,19,32,.12);
+  --ease:       cubic-bezier(.22,.75,.28,1);
+}
+
+*,*::before,*::after{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; }
+body{
+  margin:0;
+  background:var(--cream);
+  color:var(--ink);
+  font-family:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
+  font-size:16px;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+body.menu-open{ overflow:hidden; }
+
+h1,h2,h3{ font-family:'Playfair Display',Georgia,serif; font-weight:600; line-height:1.12; }
+img{ display:block; max-width:100%; }
+a{ color:inherit; text-decoration:none; }
+button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; }
+
+.wrap{ width:min(1240px,92vw); margin-inline:auto; }
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+.site-header{
+  position:fixed; inset:0 0 auto 0; z-index:100;
+  padding:26px 0;
+  background:rgba(11,19,32,.85);
+  -webkit-backdrop-filter:blur(14px);
+  backdrop-filter:blur(14px);
+  transition:padding .45s var(--ease), background .45s var(--ease),
+             box-shadow .45s var(--ease);
+}
+.site-header.scrolled{
+  padding:14px 0;
+  background:rgba(11,19,32,.95);
+  box-shadow:0 1px 0 rgba(255,255,255,.09);
+}
+.nav-wrap{ display:flex; align-items:center; justify-content:space-between; gap:24px; }
+
+.logo{ display:flex; align-items:center; gap:14px; }
+.logo-img{
+  height:48px; width:auto; object-fit:contain;
+  border-radius:6px;
+  transition:height .4s var(--ease);
+}
+.site-header.scrolled .logo-img{ height:38px; }
+.logo-name{
+  font-family:'Playfair Display',Georgia,serif;
+  font-size:1.35rem; font-weight:600; letter-spacing:.04em;
+  line-height:1.05; color:#fff; white-space:nowrap;
+  text-shadow:0 2px 10px rgba(0,0,0,.45);
+  transition:font-size .4s var(--ease);
+}
+.site-header.scrolled .logo-name{ font-size:1.15rem; }
+.logo-name .name-light{ font-weight:400; font-style:italic; opacity:.95; }
+
+.nav{ display:flex; align-items:center; gap:38px; }
+.nav a{
+  position:relative; color:rgba(255,255,255,.86);
+  font-size:.76rem; font-weight:500; letter-spacing:.15em;
+  text-transform:uppercase; padding:6px 0;
+  transition:color .3s;
+}
+.nav a::after{
+  content:''; position:absolute; left:0; bottom:0;
+  width:100%; height:2px; background:var(--brand-red);
+  transform:scaleX(0); transform-origin:right;
+  transition:transform .4s var(--ease);
+}
+.nav a:hover,.nav a:focus-visible,.nav a.active{ color:#fff; }
+.nav a:hover::after,.nav a:focus-visible::after,.nav a.active::after{
+  transform:scaleX(1); transform-origin:left;
+}
+
+.burger{ display:none; width:34px; height:26px; position:relative; z-index:120; }
+.burger span{
+  position:absolute; left:0; width:100%; height:1.5px;
+  background:#fff; border-radius:2px;
+  transition:transform .4s var(--ease), opacity .3s, top .4s var(--ease);
+}
+.burger span:nth-child(1){ top:5px; }
+.burger span:nth-child(2){ top:12.5px; }
+.burger span:nth-child(3){ top:20px; }
+.burger.open span:nth-child(1){ top:12.5px; transform:rotate(45deg); }
+.burger.open span:nth-child(2){ opacity:0; }
+.burger.open span:nth-child(3){ top:12.5px; transform:rotate(-45deg); }
+
+/* ============================================================
+   PAGE HERO
+   ============================================================ */
+.page-hero{
+  position:relative;
+  height:72vh; min-height:500px;
+  overflow:hidden;
+  background:#000;
+  display:flex; align-items:flex-end;
+}
+.page-hero__img{
+  position:absolute; inset:0;
+  width:100%; height:100%; object-fit:cover;
+  animation:kenburns 12s ease-out forwards;
+}
+@keyframes kenburns{
+  from{ transform:scale(1.12) translate3d(1%,1%,0); }
+  to  { transform:scale(1.01) translate3d(0,0,0); }
+}
+.page-hero::after{
+  content:''; position:absolute; inset:0;
+  background:linear-gradient(to top, rgba(11,19,32,.94) 0%, rgba(11,19,32,.55) 45%, rgba(11,19,32,.7) 100%);
+}
+.page-hero .caption{
+  position:relative; z-index:2;
+  padding:0 6vw 12vh;
+  max-width:900px;
+  color:#fff;
+}
+.page-hero .eyebrow{
+  display:inline-block; margin:0 0 20px;
+  padding:6px 20px; background:#fff; color:var(--brand-blue);
+  font-size:.7rem; font-weight:600; letter-spacing:.42em;
+  text-transform:uppercase; border-radius:100px;
+}
+.page-hero h1{
+  margin:0 0 20px;
+  font-size:clamp(2.4rem, 6vw, 4.4rem);
+  letter-spacing:-.01em;
+}
+.page-hero h1 em{ font-style:italic; color:var(--brand-red-light); }
+.page-hero p.sub{
+  margin:0; max-width:52ch;
+  font-size:clamp(.95rem, 1.4vw, 1.1rem);
+  font-weight:300; color:rgba(255,255,255,.85);
+}
+
+/* ============================================================
+   QUICK JUMP TABS
+   ============================================================ */
+.jump{
+  background:var(--ink); color:var(--cream);
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+.jump-inner{
+  display:flex; justify-content:center; gap:12px;
+  padding:26px 0; flex-wrap:wrap;
+}
+.jump a{
+  display:inline-flex; align-items:center; gap:.6em;
+  padding:11px 26px;
+  border:1px solid rgba(255,255,255,.25);
+  border-radius:100px;
+  font-size:.72rem; font-weight:600; letter-spacing:.2em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.85);
+  transition:background .35s var(--ease), border-color .35s var(--ease), color .35s;
+}
+.jump a:hover{
+  background:#fff; border-color:#fff; color:var(--brand-blue);
+}
+.jump a svg{ width:12px; height:12px; }
+
+/* ============================================================
+   SERVICE SECTION (base layout)
+   ============================================================ */
+.section-pad{ padding:clamp(80px,11vw,130px) 0; }
+
+.service-grid{
+  display:grid; grid-template-columns:1.05fr 1fr;
+  gap:clamp(36px,6vw,90px);
+  align-items:center;
+}
+.service-grid.flip .service-media{ order:2; }
+.service-grid.flip .service-info{ order:1; }
+
+/* --- Mini slider (media) --- */
+.slider{
+  position:relative;
+  aspect-ratio:4/5;
+  border-radius:2px;
+  overflow:hidden;
+  background:#000;
+}
+.slider__track{ position:absolute; inset:0; }
+.slider__slide{
+  position:absolute; inset:0;
+  opacity:0; visibility:hidden;
+  transition:opacity 1s var(--ease), visibility 1s;
+}
+.slider__slide.active{ opacity:1; visibility:visible; z-index:2; }
+.slider__slide img{
+  width:100%; height:100%; object-fit:cover;
+  transform:scale(1.04);
+}
+.slider__slide.active img{ animation:kenburns 7s ease-out forwards; }
+
+/* controls */
+.slider__nav{
+  position:absolute; z-index:5;
+  bottom:20px; right:20px;
+  display:flex; gap:8px;
+}
+.slider__btn{
+  width:44px; height:44px;
+  display:grid; place-items:center;
+  border-radius:50%;
+  background:rgba(255,255,255,.15);
+  border:1px solid rgba(255,255,255,.35);
+  color:#fff;
+  -webkit-backdrop-filter:blur(8px);
+  backdrop-filter:blur(8px);
+  transition:background .3s, border-color .3s, transform .3s;
+}
+.slider__btn:hover{
+  background:#fff; border-color:#fff; color:var(--brand-blue);
+  transform:translateY(-2px);
+}
+.slider__btn svg{ width:14px; height:14px; }
+
+/* dots */
+.slider__dots{
+  position:absolute; z-index:5;
+  bottom:24px; left:24px;
+  display:flex; gap:8px;
+}
+.slider__dot{
+  width:26px; height:2px; padding:0;
+  background:rgba(255,255,255,.35);
+  transition:background .35s, transform .35s;
+}
+.slider__dot:hover{ background:rgba(255,255,255,.7); }
+.slider__dot.active{ background:var(--brand-red-light); transform:scaleY(2); }
+
+/* progress bar */
+.slider__progress{
+  position:absolute; z-index:5;
+  left:0; right:0; bottom:0;
+  height:2px;
+  background:rgba(255,255,255,.12);
+}
+.slider__progress span{
+  display:block; height:100%; width:0;
+  background:var(--brand-red-light);
+}
+
+/* Corner tag */
+.slider__tag{
+  position:absolute; z-index:5;
+  top:20px; left:20px;
+  padding:7px 16px;
+  background:#fff; color:var(--brand-blue);
+  font-size:.65rem; font-weight:700;
+  letter-spacing:.24em; text-transform:uppercase;
+  border-radius:100px;
+}
+
+/* --- Info side --- */
+.service-info .eyebrow-dark{
+  display:inline-block;
+  margin:0 0 18px;
+  padding:6px 18px;
+  background:var(--brand-blue); color:#fff;
+  font-size:.66rem; font-weight:600;
+  letter-spacing:.4em; text-transform:uppercase;
+  border-radius:100px;
+}
+.service-info h2{
+  margin:0 0 22px;
+  font-size:clamp(1.9rem,3.6vw,2.9rem);
+  letter-spacing:-.01em;
+}
+.service-info h2 em{ font-style:italic; color:var(--brand-red-light); }
+.service-info .lead{
+  margin:0 0 30px;
+  color:var(--muted); font-weight:300;
+  max-width:56ch;
+}
+
+/* Feature list */
+.features{
+  list-style:none; margin:0 0 34px; padding:0;
+  display:grid; gap:14px;
+}
+.features li{
+  display:flex; gap:14px; align-items:flex-start;
+  font-size:.94rem; color:var(--ink);
+  font-weight:400;
+}
+.features li::before{
+  content:'';
+  flex-shrink:0;
+  width:20px; height:20px;
+  margin-top:3px;
+  border-radius:50%;
+  background:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><polyline points='20 6 9 17 4 12'/></svg>")
+    center / 11px no-repeat,
+    var(--brand-blue);
+}
+.features li strong{ font-weight:600; }
+
+/* Meta row */
+.meta{
+  display:flex; align-items:center; gap:24px;
+  flex-wrap:wrap;
+  padding-top:24px;
+  border-top:1px solid var(--line);
+}
+.price{ display:flex; flex-direction:column; }
+.price .from{
+  font-size:.62rem; font-weight:600;
+  letter-spacing:.3em; text-transform:uppercase;
+  color:var(--muted);
+}
+.price .amount{
+  font-family:'Playfair Display',serif;
+  font-size:1.55rem; font-weight:600;
+  color:var(--ink);
+  line-height:1.1;
+}
+
+/* Buttons */
+.btn{
+  display:inline-flex; align-items:center; gap:.7em;
+  padding:14px 30px;
+  border-radius:100px;
+  font-size:.72rem; font-weight:600;
+  letter-spacing:.2em; text-transform:uppercase;
+  transition:background .4s var(--ease), border-color .4s var(--ease),
+             color .4s var(--ease), transform .4s var(--ease);
+}
+.btn.primary{
+  background:var(--brand-blue); color:#fff;
+  border:1px solid var(--brand-blue);
+}
+.btn.primary:hover{
+  background:var(--brand-red); border-color:var(--brand-red);
+  transform:translateY(-2px);
+}
+.btn.ghost{
+  background:transparent; color:var(--ink);
+  border:1px solid var(--ink);
+}
+.btn.ghost:hover{
+  background:var(--ink); color:#fff;
+  transform:translateY(-2px);
+}
+
+/* ============================================================
+   ALTERNATING BACKGROUNDS
+   ============================================================ */
+.service--alt{ background:#ffffff; }
+.service--dark{
+  background:var(--ink); color:var(--cream);
+}
+.service--dark .service-info .eyebrow-dark{
+  background:#fff; color:var(--brand-blue);
+}
+.service--dark .service-info .lead{ color:rgba(244,247,249,.65); }
+.service--dark .features li{ color:rgba(244,247,249,.85); }
+.service--dark .features li::before{
+  background:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23135ba0' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><polyline points='20 6 9 17 4 12'/></svg>")
+    center / 11px no-repeat,
+    #ffffff;
+}
+.service--dark .meta{ border-top-color:rgba(255,255,255,.14); }
+.service--dark .price .from{ color:rgba(244,247,249,.55); }
+.service--dark .price .amount{ color:#fff; }
+.service--dark .btn.ghost{
+  color:var(--cream); border-color:rgba(255,255,255,.4);
+}
+.service--dark .btn.ghost:hover{
+  background:#fff; color:var(--ink); border-color:#fff;
+}
+
+/* ============================================================
+   PROCESS STRIP
+   ============================================================ */
+.process{
+  background:var(--ink-soft); color:var(--cream);
+  padding:clamp(80px,10vw,120px) 0;
+}
+.process .eyebrow-dark{
+  display:inline-block; margin:0 0 18px;
+  padding:6px 18px; background:#fff; color:var(--brand-blue);
+  font-size:.66rem; font-weight:600;
+  letter-spacing:.4em; text-transform:uppercase;
+  border-radius:100px;
+}
+.process h2{
+  margin:0 0 22px;
+  font-size:clamp(1.9rem,3.6vw,2.9rem);
+  color:#fff;
+}
+.process .lead{
+  margin:0 0 56px;
+  color:rgba(244,247,249,.62); font-weight:300;
+  max-width:60ch;
+}
+.process-grid{
+  display:grid; grid-template-columns:repeat(4,1fr);
+  gap:1px; background:rgba(255,255,255,.1);
+  border:1px solid rgba(255,255,255,.1);
+}
+.step{
+  background:var(--ink-soft);
+  padding:clamp(30px,3.5vw,44px);
+  transition:background .4s var(--ease);
+}
+.step:hover{ background:#1a2a40; }
+.step .num{
+  display:inline-block; margin-bottom:20px;
+  padding:4px 13px; background:#fff; color:var(--brand-blue);
+  font-size:.7rem; font-weight:700;
+  letter-spacing:.15em;
+  border-radius:100px;
+}
+.step h3{
+  margin:0 0 12px; font-size:1.24rem; color:#fff;
+}
+.step p{
+  margin:0; font-size:.9rem; font-weight:300;
+  color:rgba(244,247,249,.65);
+}
+
+/* ============================================================
+   CTA
+   ============================================================ */
+.cta{
+  background:var(--ink); color:var(--cream);
+  text-align:center;
+  padding:clamp(70px,9vw,110px) 0;
+}
+.cta .eyebrow-dark{
+  display:inline-block; margin:0 0 18px;
+  padding:6px 18px; background:#fff; color:var(--brand-blue);
+  font-size:.66rem; font-weight:600;
+  letter-spacing:.4em; text-transform:uppercase;
+  border-radius:100px;
+}
+.cta h2{ margin:0 0 18px; font-size:clamp(1.8rem,3.4vw,2.7rem); }
+.cta p{ margin:0 auto 34px; max-width:52ch; color:rgba(244,247,249,.62); font-weight:300; }
+.cta .btn.solid{ background:var(--brand-blue); border-color:var(--brand-blue); color:#fff; }
+.cta .btn.solid:hover{ background:var(--brand-red); border-color:var(--brand-red); }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer{ background:#070b12; color:rgba(244,247,249,.62); padding:70px 0 34px; }
+.foot-grid{
+  display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:44px;
+  padding-bottom:44px; border-bottom:1px solid rgba(255,255,255,.1);
+}
+.foot-grid h4{
+  margin:0 0 18px; font-family:'Inter',sans-serif;
+  font-size:.68rem; letter-spacing:.3em; text-transform:uppercase;
+  color:#fff; font-weight:600;
+}
+.foot-grid ul{ list-style:none; margin:0; padding:0; display:grid; gap:11px; }
+.foot-grid a{ font-size:.92rem; font-weight:300; transition:color .3s; }
+.foot-grid a:hover{ color:var(--brand-red-light); }
+.foot-bottom{
+  display:flex; justify-content:space-between; flex-wrap:wrap;
+  gap:12px; padding-top:26px; font-size:.78rem;
+  color:rgba(244,247,249,.4);
+}
+
+/* reveal */
+.reveal{ opacity:0; transform:translateY(34px); transition:opacity 1s var(--ease), transform 1s var(--ease); }
+.reveal.in{ opacity:1; transform:none; }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width:900px){
+  .burger{ display:block; }
+
+  .nav{
+    position:fixed; inset:0 0 0 auto;
+    width:min(82vw,360px);
+    background:#0b1320;
+    flex-direction:column; align-items:flex-start; justify-content:center;
+    gap:26px; padding:0 44px;
+    transform:translateX(101%);
+    transition:transform .5s var(--ease);
+    box-shadow:-20px 0 60px rgba(0,0,0,.5);
+  }
+  .nav.open{ transform:none; }
+  .nav a{ font-size:1rem; letter-spacing:.14em; }
+
+  .page-hero{ height:60vh; min-height:420px; }
+  .page-hero .caption{ padding:0 7vw 10vh; }
+
+  .service-grid{ grid-template-columns:1fr; gap:44px; }
+  .service-grid.flip .service-media{ order:1; }
+  .service-grid.flip .service-info{ order:2; }
+  .slider{ aspect-ratio:16/11; }
+
+  .process-grid{ grid-template-columns:repeat(2,1fr); }
+  .foot-grid{ grid-template-columns:1fr; gap:34px; }
+
+  .logo-name{ font-size:1.15rem; }
+  .logo-img{ height:42px; }
+}
+
+@media (max-width:520px){
+  .process-grid{ grid-template-columns:1fr; }
+  .jump-inner{ gap:8px; padding:20px 0; }
+  .jump a{ padding:9px 18px; font-size:.66rem; letter-spacing:.14em; }
+  .slider__nav{ bottom:14px; right:14px; }
+  .slider__dots{ bottom:18px; left:18px; }
+  .logo-name{ font-size:1rem; }
+  .logo-img{ height:36px; }
+  .meta{ gap:16px; }
+}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:.001ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.001ms !important;
+    scroll-behavior:auto !important;
+  }
+  .page-hero__img, .slider__slide img{ transform:none !important; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ========================= HEADER ========================= -->
+<header class="site-header" id="header">
+  <div class="wrap nav-wrap">
+    <a href="index.html" class="logo">
+      <img src="logo.png" alt="Flash Photography logo" class="logo-img">
+      <span class="logo-name">
+        Flash <span class="name-light">Photography</span>
+      </span>
+    </a>
+
+    <nav class="nav" id="nav" aria-label="Main navigation">
+      <a href="index.html">Home</a>
+      <a href="about.html">About us</a>
+      <a href="services.html" class="active">Services</a>
+      <a href="index.html#training">Training</a>
+      <a href="index.html#portfolio">Portfolio</a>
+      <a href="index.html#contact">Contact Us</a>
+    </nav>
+
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="nav">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ========================= PAGE HERO ========================= -->
+<section class="page-hero">
+  <img class="page-hero__img"
+       src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&q=80&w=1920"
+       alt="Photographer on location">
+  <div class="caption">
+    <p class="eyebrow">Services</p>
+    <h1>Everything from the <em>shutter</em> to the wall</h1>
+    <p class="sub">Three crafts under one roof — capturing the moment, filming the story, and printing it to last a lifetime.</p>
+  </div>
+</section>
+
+<!-- ========================= QUICK JUMP ========================= -->
+<nav class="jump" aria-label="Jump to a service">
+  <div class="jump-inner wrap">
+    <a href="#photography">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M3 9V7a2 2 0 0 1 2-2h2l1.5-2h7L17 5h2a2 2 0 0 1 2 2v2"/><path d="M21 9v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9"/></svg>
+      Photography
+    </a>
+    <a href="#videography">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+      Videography
+    </a>
+    <a href="#printing">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+      Printing
+    </a>
+  </div>
+</nav>
+
+<!-- ============================================================
+     01 — PHOTOGRAPHY
+     ============================================================ -->
+<section class="section-pad service--alt" id="photography">
+  <div class="wrap service-grid">
+
+    <!-- Media / slider -->
+    <div class="service-media reveal">
+      <div class="slider" data-slider data-autoplay="5500">
+        <span class="slider__tag">01 · Photography</span>
+
+        <div class="slider__track">
+          <div class="slider__slide active"><img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=1200" alt="Wedding photography" loading="lazy"></div>
+          <div class="slider__slide"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=1200" alt="Portrait photography" loading="lazy"></div>
+          <div class="slider__slide"><img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&q=80&w=1200" alt="Commercial photography" loading="lazy"></div>
+        </div>
+
+        <div class="slider__dots" data-dots></div>
+        <div class="slider__nav">
+          <button class="slider__btn" data-prev aria-label="Previous image">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <button class="slider__btn" data-next aria-label="Next image">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+          </button>
+        </div>
+        <div class="slider__progress"><span data-progress></span></div>
+      </div>
+    </div>
+
+    <!-- Info -->
+    <div class="service-info reveal">
+      <p class="eyebrow-dark">01 — Photography</p>
+      <h2>Still images, <em>lasting</em> feeling</h2>
+      <p class="lead">
+        From a single portrait to a full wedding day, we shoot with patience — waiting
+        for real expressions instead of staging every frame. Every gallery is hand-edited
+        by the same person who pressed the shutter.
+      </p>
+
+      <ul class="features">
+        <li><span><strong>Weddings &amp; events</strong> — full-day coverage, second shooter included.</span></li>
+        <li><span><strong>Portraits &amp; branding</strong> — studio or on-location, personal or team.</span></li>
+        <li><span><strong>Commercial &amp; product</strong> — art-directed, retouched, ready for print or web.</span></li>
+        <li><span><strong>300–500 edited images</strong> delivered in a private online gallery.</span></li>
+      </ul>
+
+      <div class="meta">
+        <div class="price">
+          <span class="from">Starting at</span>
+          <span class="amount">₦250,000</span>
+        </div>
+        <a href="index.html#contact" class="btn primary">Book a Shoot</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     02 — VIDEOGRAPHY
+     ============================================================ -->
+<section class="section-pad service--dark" id="videography">
+  <div class="wrap service-grid flip">
+
+    <!-- Media -->
+    <div class="service-media reveal">
+      <div class="slider" data-slider data-autoplay="6000">
+        <span class="slider__tag">02 · Videography</span>
+
+        <div class="slider__track">
+          <div class="slider__slide active"><img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&q=80&w=1200" alt="Videography on set" loading="lazy"></div>
+          <div class="slider__slide"><img src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&q=80&w=1200" alt="Cinema camera" loading="lazy"></div>
+          <div class="slider__slide"><img src="https://images.unsplash.com/photo-1585699324551-f6c309eedeca?auto=format&fit=crop&q=80&w=1200" alt="Film production" loading="lazy"></div>
+        </div>
+
+        <div class="slider__dots" data-dots></div>
+        <div class="slider__nav">
+          <button class="slider__btn" data-prev aria-label="Previous image">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <button class="slider__btn" data-next aria-label="Next image">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+          </button>
+        </div>
+        <div class="slider__progress"><span data-progress></span></div>
+      </div>
+    </div>
+
+    <!-- Info -->
+    <div class="service-info reveal">
+      <p class="eyebrow-dark">02 — Videography</p>
+      <h2>Stories told in <em>motion</em></h2>
+      <p class="lead">
+        Cinematic films for weddings, brands and events. We shoot on 4K with
+        colour-graded cinema profiles and edit with original sound design —
+        so the film feels as good as the day itself.
+      </p>
+
+      <ul class="features">
+        <li><span><strong>Wedding films</strong> — highlight reels and full-length documentary edits.</span></li>
+        <li><span><strong>Brand &amp; commercial</strong> — product films, founder stories, social cuts.</span></li>
+        <li><span><strong>Event coverage</strong> — conferences, launches and live performances.</span></li>
+        <li><span><strong>4K delivery</strong> with licensed music, colour grade and sound mix.</span></li>
+      </ul>
+
+      <div class="meta">
+        <div class="price">
+          <span class="from">Starting at</span>
+          <span class="amount">₦400,000</span>
+        </div>
+        <a href="index.html#contact" class="btn primary">Request a Quote</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     03 — PRINTING
+     ============================================================ -->
+<section class="section-pad service--alt" id="printing">
+  <div class="wrap service-grid">
+
+    <!-- Media -->
+    <div class="service-media reveal">
+      <div class="slider" data-slider data-autoplay="5000">
+        <span class="slider__tag">03 · Printing</span>
+
+        <div class="slider__track">
+          <div class="slider__slide active"><img src="https://images.unsplash.com/photo-1562408590-e32931084e23?auto=format&fit=crop&q=80&w=1200" alt="Fine art printing" loading="lazy"></div>
+          <div class="slider__slide"><img src="https://images.unsplash.com/photo-1568667256549-094345857637?auto=format&fit=crop&q=80&w=1200" alt="Prints on the wall" loading="lazy"></div>
+          <div class="slider__slide"><img src="https://images.unsplash.com/photo-1545987796-200677ee1011?auto=format&fit=crop&q=80&w=1200" alt="Framing studio" loading="lazy"></div>
+        </div>
+
+        <div class="slider__dots" data-dots></div>
+        <div class="slider__nav">
+          <button class="slider__btn" data-prev aria-label="Previous image">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <button class="slider__btn" data-next aria-label="Next image">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+          </button>
+        </div>
+        <div class="slider__progress"><span data-progress></span></div>
+      </div>
+    </div>
+
+    <!-- Info -->
+    <div class="service-info reveal">
+      <p class="eyebrow-dark">03 — Printing</p>
+      <h2>Prints that <em>outlast</em> the cloud</h2>
+      <p class="lead">
+        Screens come and go — a framed print stays on the wall. Our in-house print
+        studio uses archival pigment inks on premium cotton papers, hand-checked
+        for colour before it leaves the door.
+      </p>
+
+      <ul class="features">
+        <li><span><strong>Fine-art prints</strong> — archival pigment on Hahnemühle &amp; Canson papers.</span></li>
+        <li><span><strong>Albums &amp; books</strong> — layflat wedding albums, hand-bound in leather or linen.</span></li>
+        <li><span><strong>Framing</strong> — museum-grade glass, custom frames, ready to hang.</span></li>
+        <li><span><strong>Large format</strong> — canvas wraps, wall murals and gallery panels up to 2m.</span></li>
+      </ul>
+
+      <div class="meta">
+        <div class="price">
+          <span class="from">Starting at</span>
+          <span class="amount">₦35,000</span>
+        </div>
+        <a href="index.html#contact" class="btn primary">Order a Print</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     PROCESS
+     ============================================================ -->
+<section class="process">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="eyebrow-dark">How it works</p>
+      <h2>From first message to final handover</h2>
+      <p class="lead">A simple four-step process — the same for every service, so you always know what happens next.</p>
+    </div>
+
+    <div class="process-grid reveal">
+      <div class="step">
+        <span class="num">01</span>
+        <h3>Say hello</h3>
+        <p>Tell us what you need and when. We'll reply within 24 hours with availability and a rough quote.</p>
+      </div>
+      <div class="step">
+        <span class="num">02</span>
+        <h3>Plan the shoot</h3>
+        <p>A short call to lock the brief, the location, the schedule and any references you love.</p>
+      </div>
+      <div class="step">
+        <span class="num">03</span>
+        <h3>Shoot day</h3>
+        <p>We show up early, stay calm, and keep the day moving. You just live it — we'll capture it.</p>
+      </div>
+      <div class="step">
+        <span class="num">04</span>
+        <h3>Deliver</h3>
+        <p>Hand-edited galleries, films or prints — delivered on schedule, with revisions included.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================= CTA ========================= -->
+<section class="cta">
+  <div class="wrap reveal">
+    <p class="eyebrow-dark">Ready to start?</p>
+    <h2>Let's talk about your project</h2>
+    <p>Whether it's a shoot, a film or a print order — tell us the idea and we'll take it from there.</p>
+    <a href="index.html#contact" class="btn solid">Get in Touch</a>
+  </div>
+</section>
+
+<!-- ========================= FOOTER ========================= -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a href="index.html" class="logo" style="margin-bottom:18px; display:inline-flex;">
+          <img src="logo.png" alt="Flash Photography logo" class="logo-img">
+          <span class="logo-name">
+            Flash <span class="name-light">Photography</span>
+          </span>
+        </a>
+        <p style="margin:0; font-weight:300; max-width:34ch;">
+          14 Adeola Street, Victoria Island, Lagos<br>
+          hello@flashphotography.com<br>
+          +234 800 000 0000
+        </p>
+      </div>
+
+      <div>
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="about.html">About us</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="index.html#training">Training</a></li>
+          <li><a href="index.html#portfolio">Portfolio</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Follow</h4>
+        <ul>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">Behance</a></li>
+          <li><a href="#">Pinterest</a></li>
+          <li><a href="#">YouTube</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="foot-bottom">
+      <span>© <span id="year"></span> Flash Photography. All rights reserved.</span>
+      <span>Privacy Policy · Terms</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ========================= SCRIPTS ========================= -->
+<script>
+(function () {
+  'use strict';
+
+  /* ---------- Header on scroll ---------- */
+  const header = document.getElementById('header');
+  const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 40);
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  /* ---------- Mobile menu ---------- */
+  const burger = document.getElementById('burger');
+  const nav    = document.getElementById('nav');
+  const closeMenu = () => {
+    nav.classList.remove('open');
+    burger.classList.remove('open');
+    burger.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('menu-open');
+  };
+  burger.addEventListener('click', () => {
+    const open = nav.classList.toggle('open');
+    burger.classList.toggle('open', open);
+    burger.setAttribute('aria-expanded', String(open));
+    document.body.classList.toggle('menu-open', open);
+  });
+  nav.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+
+  /* ---------- Mini sliders ---------- */
+  document.querySelectorAll('[data-slider]').forEach(function (slider) {
+    const slides     = Array.from(slider.querySelectorAll('.slider__slide'));
+    const dotsWrap   = slider.querySelector('[data-dots]');
+    const progress   = slider.querySelector('[data-progress]');
+    const btnPrev    = slider.querySelector('[data-prev]');
+    const btnNext    = slider.querySelector('[data-next]');
+    const DURATION   = parseInt(slider.dataset.autoplay || '5500', 10);
+
+    let current = 0;
+    let timer   = null;
+    let paused  = false;
+
+    /* build dots */
+    const dots = slides.map((_, i) => {
+      const b = document.createElement('button');
+      b.className = 'slider__dot' + (i === 0 ? ' active' : '');
+      b.type = 'button';
+      b.setAttribute('aria-label', 'Go to image ' + (i + 1));
+      b.addEventListener('click', () => go(i));
+      dotsWrap.appendChild(b);
+      return b;
+    });
+
+    function runProgress() {
+      if (!progress) return;
+      progress.style.transition = 'none';
+      progress.style.width = '0%';
+      void progress.offsetWidth;
+      progress.style.transition = 'width ' + DURATION + 'ms linear';
+      progress.style.width = '100%';
+    }
+    function stopProgress() {
+      if (!progress) return;
+      const w = getComputedStyle(progress).width;
+      progress.style.transition = 'none';
+      progress.style.width = w;
+    }
+
+    function schedule() {
+      clearTimeout(timer);
+      if (paused) return;
+      runProgress();
+      timer = setTimeout(() => go(current + 1), DURATION);
+    }
+
+    function go(index) {
+      const next = (index + slides.length) % slides.length;
+      if (next === current) return;
+
+      slides[current].classList.remove('active');
+      dots[current].classList.remove('active');
+
+      current = next;
+
+      slides[current].classList.add('active');
+      dots[current].classList.add('active');
+
+      schedule();
+    }
+
+    if (btnNext) btnNext.addEventListener('click', () => go(current + 1));
+    if (btnPrev) btnPrev.addEventListener('click', () => go(current - 1));
+
+    /* touch swipe */
+    let startX = 0, tracking = false;
+    slider.addEventListener('touchstart', e => {
+      startX = e.touches[0].clientX; tracking = true;
+    }, { passive: true });
+    slider.addEventListener('touchend', e => {
+      if (!tracking) return;
+      tracking = false;
+      const dx = e.changedTouches[0].clientX - startX;
+      if (Math.abs(dx) > 45) dx < 0 ? go(current + 1) : go(current - 1);
+    }, { passive: true });
+
+    /* pause when out of view */
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver(entries => {
+        entries.forEach(en => {
+          if (en.isIntersecting) {
+            paused = false; schedule();
+          } else {
+            paused = true; clearTimeout(timer); stopProgress();
+          }
+        });
+      }, { threshold: 0.25 });
+      io.observe(slider);
+    } else {
+      schedule();
+    }
+  });
+
+  /* ---------- Reveal on scroll ---------- */
+  const revealEls = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+    revealEls.forEach(el => io.observe(el));
+  } else {
+    revealEls.forEach(el => el.classList.add('in'));
+  }
+
+  /* ---------- Year ---------- */
+  document.getElementById('year').textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
