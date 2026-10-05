@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact Us — Flash Photography</title>
+<meta name="description" content="Get in touch with Flash Photography — book a shoot, a film, a print order or a training seat. Message us on WhatsApp.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   TOKENS
+   ============================================================ */
+:root{
+  --ink:        #0b1320;
+  --ink-soft:   #162233;
+  --cream:      #f4f7f9;
+  --muted:      #5e6f82;
+  --brand-blue: #135ba0;
+  --brand-red:  #88252a;
+  --brand-red-light: #a12c32;
+  --whatsapp:   #25d366;
+  --whatsapp-dark: #1da851;
+  --line:       rgba(11,19,32,.12);
+  --ease:       cubic-bezier(.22,.75,.28,1);
+}
+
+*,*::before,*::after{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; }
+body{
+  margin:0;
+  background:var(--cream);
+  color:var(--ink);
+  font-family:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
+  font-size:16px;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+body.menu-open{ overflow:hidden; }
+
+h1,h2,h3{ font-family:'Playfair Display',Georgia,serif; font-weight:600; line-height:1.12; }
+img{ display:block; max-width:100%; }
+a{ color:inherit; text-decoration:none; }
+button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; }
+
+.wrap{ width:min(1240px,92vw); margin-inline:auto; }
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+.site-header{
+  position:fixed; inset:0 0 auto 0; z-index:100;
+  padding:26px 0;
+  background:rgba(11,19,32,.85);
+  -webkit-backdrop-filter:blur(14px);
+  backdrop-filter:blur(14px);
+  transition:padding .45s var(--ease), background .45s var(--ease),
+             box-shadow .45s var(--ease);
+}
+.site-header.scrolled{
+  padding:14px 0;
+  background:rgba(11,19,32,.95);
+  box-shadow:0 1px 0 rgba(255,255,255,.09);
+}
+.nav-wrap{ display:flex; align-items:center; justify-content:space-between; gap:24px; }
+
+.logo{ display:flex; align-items:center; gap:14px; }
+.logo-img{
+  height:48px; width:auto; object-fit:contain;
+  border-radius:6px;
+  transition:height .4s var(--ease);
+}
+.site-header.scrolled .logo-img{ height:38px; }
+.logo-name{
+  font-family:'Playfair Display',Georgia,serif;
+  font-size:1.35rem; font-weight:600; letter-spacing:.04em;
+  line-height:1.05; color:#fff; white-space:nowrap;
+  text-shadow:0 2px 10px rgba(0,0,0,.45);
+  transition:font-size .4s var(--ease);
+}
+.site-header.scrolled .logo-name{ font-size:1.15rem; }
+.logo-name .name-light{ font-weight:400; font-style:italic; opacity:.95; }
+
+.nav{ display:flex; align-items:center; gap:38px; }
+.nav a{
+  position:relative; color:rgba(255,255,255,.86);
+  font-size:.76rem; font-weight:500; letter-spacing:.15em;
+  text-transform:uppercase; padding:6px 0;
+  transition:color .3s;
+}
+.nav a::after{
+  content:''; position:absolute; left:0; bottom:0;
+  width:100%; height:2px; background:var(--brand-red);
+  transform:scaleX(0); transform-origin:right;
+  transition:transform .4s var(--ease);
+}
+.nav a:hover,.nav a:focus-visible,.nav a.active{ color:#fff; }
+.nav a:hover::after,.nav a:focus-visible::after,.nav a.active::after{
+  transform:scaleX(1); transform-origin:left;
+}
+
+.burger{ display:none; width:34px; height:26px; position:relative; z-index:120; }
+.burger span{
+  position:absolute; left:0; width:100%; height:1.5px;
+  background:#fff; border-radius:2px;
+  transition:transform .4s var(--ease), opacity .3s, top .4s var(--ease);
+}
+.burger span:nth-child(1){ top:5px; }
+.burger span:nth-child(2){ top:12.5px; }
+.burger span:nth-child(3){ top:20px; }
+.burger.open span:nth-child(1){ top:12.5px; transform:rotate(45deg); }
+.burger.open span:nth-child(2){ opacity:0; }
+.burger.open span:nth-child(3){ top:12.5px; transform:rotate(-45deg); }
+
+/* ============================================================
+   PAGE HERO
+   ============================================================ */
+.page-hero{
+  position:relative;
+  height:70vh; min-height:480px;
+  overflow:hidden;
+  background:#000;
+  display:flex; align-items:flex-end;
+}
+.page-hero__img{
+  position:absolute; inset:0;
+  width:100%; height:100%; object-fit:cover;
+  animation:kenburns 12s ease-out forwards;
+}
+@keyframes kenburns{
+  from{ transform:scale(1.12) translate3d(1%,1%,0); }
+  to  { transform:scale(1.01) translate3d(0,0,0); }
+}
+.page-hero::after{
+  content:''; position:absolute; inset:0;
+  background:linear-gradient(to top, rgba(11,19,32,.94) 0%, rgba(11,19,32,.55) 45%, rgba(11,19,32,.7) 100%);
+}
+.page-hero .caption{
+  position:relative; z-index:2;
+  padding:0 6vw 12vh;
+  max-width:900px;
+  color:#fff;
+}
+.page-hero .eyebrow{
+  display:inline-block; margin:0 0 20px;
+  padding:6px 20px; background:#fff; color:var(--brand-blue);
+  font-size:.7rem; font-weight:600; letter-spacing:.42em;
+  text-transform:uppercase; border-radius:100px;
+}
+.page-hero h1{
+  margin:0 0 20px;
+  font-size:clamp(2.4rem, 6vw, 4.4rem);
+  letter-spacing:-.01em;
+}
+.page-hero h1 em{ font-style:italic; color:var(--brand-red-light); }
+.page-hero p.sub{
+  margin:0; max-width:52ch;
+  font-size:clamp(.95rem, 1.4vw, 1.1rem);
+  font-weight:300; color:rgba(255,255,255,.85);
+}
+
+/* ============================================================
+   SECTION BASICS
+   ============================================================ */
+.section-pad{ padding:clamp(70px,10vw,120px) 0; }
+.section--dark{ background:var(--ink); color:var(--cream); }
+.section--alt{ background:#ffffff; }
+
+.eyebrow-dark{
+  display:inline-block; margin:0 0 18px;
+  padding:6px 18px;
+  background:var(--brand-blue); color:#fff;
+  font-size:.66rem; font-weight:600;
+  letter-spacing:.4em; text-transform:uppercase;
+  border-radius:100px;
+}
+.section--dark .eyebrow-dark{ background:#fff; color:var(--brand-blue); }
+
+.h2{
+  margin:0 0 20px;
+  font-size:clamp(1.9rem,3.6vw,2.9rem);
+  letter-spacing:-.01em;
+}
+.h2 em{ font-style:italic; color:var(--brand-red-light); }
+.lead{
+  margin:0;
+  color:var(--muted); font-weight:300;
+  max-width:60ch;
+}
+.section--dark .lead{ color:rgba(244,247,249,.65); }
+
+/* ============================================================
+   CONTACT GRID (form + info)
+   ============================================================ */
+.contact-grid{
+  display:grid;
+  grid-template-columns:1.15fr 1fr;
+  gap:clamp(36px,5vw,80px);
+  align-items:start;
+}
+
+/* --- Form --- */
+.form-card{
+  background:#fff;
+  padding:clamp(32px,4.5vw,56px);
+  border-radius:2px;
+  border:1px solid var(--line);
+  box-shadow:0 20px 60px -40px rgba(11,19,32,.25);
+}
+.form-card h2{
+  margin:0 0 12px;
+  font-size:clamp(1.6rem,2.4vw,2rem);
+}
+.form-card .intro{
+  margin:0 0 34px;
+  color:var(--muted); font-weight:300;
+  font-size:.94rem;
+}
+.field{
+  margin-bottom:22px;
+}
+.field-row{
+  display:grid; grid-template-columns:1fr 1fr; gap:22px;
+}
+.field label{
+  display:block;
+  margin-bottom:9px;
+  font-size:.68rem; font-weight:600;
+  letter-spacing:.24em; text-transform:uppercase;
+  color:var(--ink);
+}
+.field input,
+.field select,
+.field textarea{
+  width:100%;
+  padding:14px 16px;
+  border:1px solid var(--line);
+  border-radius:2px;
+  background:#fbfcfd;
+  font:inherit;
+  font-size:.94rem;
+  color:var(--ink);
+  transition:border-color .35s var(--ease), background .35s var(--ease),
+             box-shadow .35s var(--ease);
+}
+.field input:focus,
+.field select:focus,
+.field textarea:focus{
+  outline:none;
+  border-color:var(--brand-blue);
+  background:#fff;
+  box-shadow:0 0 0 3px rgba(19,91,160,.12);
+}
+.field textarea{
+  resize:vertical;
+  min-height:140px;
+  font-family:inherit;
+}
+.field select{
+  appearance:none;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%235e6f82' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>");
+  background-repeat:no-repeat;
+  background-position:right 16px center;
+  padding-right:44px;
+}
+
+.btn{
+  display:inline-flex; align-items:center; gap:.7em;
+  padding:15px 34px;
+  border-radius:100px;
+  font-size:.74rem; font-weight:600;
+  letter-spacing:.2em; text-transform:uppercase;
+  transition:background .4s var(--ease), border-color .4s var(--ease),
+             color .4s var(--ease), transform .4s var(--ease);
+}
+.btn.primary{
+  background:var(--brand-blue); color:#fff;
+  border:1px solid var(--brand-blue);
+}
+.btn.primary:hover{
+  background:var(--brand-red); border-color:var(--brand-red);
+  transform:translateY(-2px);
+}
+.btn.full{ width:100%; justify-content:center; }
+
+/* --- Info column --- */
+.info-stack{
+  display:grid; gap:20px;
+}
+
+/* WhatsApp promo card */
+.wa-card{
+  background:linear-gradient(135deg, var(--whatsapp) 0%, var(--whatsapp-dark) 100%);
+  color:#fff;
+  padding:32px 30px;
+  border-radius:2px;
+  display:flex;
+  gap:20px;
+  align-items:flex-start;
+  transition:transform .4s var(--ease), box-shadow .4s var(--ease);
+  box-shadow:0 20px 50px -30px rgba(37,211,102,.6);
+}
+.wa-card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 30px 60px -30px rgba(37,211,102,.8);
+}
+.wa-icon{
+  flex-shrink:0;
+  width:56px; height:56px;
+  display:grid; place-items:center;
+  background:#fff; color:var(--whatsapp);
+  border-radius:50%;
+}
+.wa-icon svg{ width:30px; height:30px; }
+.wa-card h3{
+  margin:0 0 6px;
+  font-size:1.32rem;
+  color:#fff;
+}
+.wa-card p{
+  margin:0 0 14px;
+  font-size:.9rem;
+  font-weight:300;
+  color:rgba(255,255,255,.92);
+}
+.wa-card .wa-action{
+  display:inline-flex; align-items:center; gap:.6em;
+  font-size:.68rem; font-weight:700;
+  letter-spacing:.22em; text-transform:uppercase;
+  color:#fff;
+  border-bottom:1px solid rgba(255,255,255,.5);
+  padding-bottom:4px;
+  transition:gap .35s var(--ease);
+}
+.wa-card:hover .wa-action{ gap:1em; }
+
+/* Contact info cards */
+.info-card{
+  background:#fff;
+  padding:28px 30px;
+  border-radius:2px;
+  border:1px solid var(--line);
+  display:flex;
+  gap:20px;
+  align-items:flex-start;
+  transition:border-color .35s var(--ease), transform .35s var(--ease);
+}
+.info-card:hover{
+  border-color:var(--brand-blue);
+  transform:translateY(-2px);
+}
+.info-icon{
+  flex-shrink:0;
+  width:46px; height:46px;
+  display:grid; place-items:center;
+  background:var(--cream);
+  color:var(--brand-blue);
+  border-radius:50%;
+}
+.info-icon svg{ width:20px; height:20px; }
+.info-card h4{
+  margin:0 0 6px;
+  font-family:'Inter',sans-serif;
+  font-size:.68rem; font-weight:600;
+  letter-spacing:.28em; text-transform:uppercase;
+  color:var(--muted);
+}
+.info-card p,
+.info-card a{
+  margin:0;
+  font-size:.98rem;
+  color:var(--ink);
+  line-height:1.5;
+  transition:color .3s;
+}
+.info-card a:hover{ color:var(--brand-blue); }
+.info-card .sub{
+  display:block;
+  margin-top:4px;
+  font-size:.8rem;
+  color:var(--muted);
+}
+
+/* ============================================================
+   MAP
+   ============================================================ */
+.map-wrap{
+  position:relative;
+  height:520px;
+  overflow:hidden;
+  background:var(--ink-soft);
+}
+.map-wrap iframe{
+  position:absolute; inset:0;
+  width:100%; height:100%;
+  border:0;
+  filter:grayscale(.35) contrast(1.05);
+  transition:filter .5s var(--ease);
+}
+.map-wrap:hover iframe{
+  filter:grayscale(0) contrast(1);
+}
+.map-card{
+  position:absolute;
+  z-index:2;
+  top:50%; left:clamp(20px,6vw,80px);
+  transform:translateY(-50%);
+  background:#fff;
+  padding:32px 34px;
+  max-width:340px;
+  border-radius:2px;
+  box-shadow:0 30px 80px -30px rgba(11,19,32,.4);
+}
+.map-card .eyebrow-dark{
+  margin-bottom:14px;
+}
+.map-card h3{
+  margin:0 0 14px;
+  font-size:1.5rem;
+}
+.map-card p{
+  margin:0 0 20px;
+  font-size:.9rem;
+  color:var(--muted);
+  font-weight:300;
+}
+.map-card .btn{ padding:13px 26px; font-size:.68rem; }
+
+/* ============================================================
+   FAQ
+   ============================================================ */
+.faq-grid{
+  display:grid;
+  grid-template-columns:1fr 1.2fr;
+  gap:clamp(36px,6vw,90px);
+  align-items:start;
+}
+.faq-list{
+  display:grid; gap:12px;
+}
+.faq-item{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:2px;
+  overflow:hidden;
+  transition:border-color .35s var(--ease);
+}
+.faq-item[open]{
+  border-color:var(--brand-blue);
+}
+.faq-item summary{
+  list-style:none;
+  cursor:pointer;
+  padding:20px 26px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+  font-family:'Playfair Display',serif;
+  font-size:1.06rem;
+  font-weight:600;
+  color:var(--ink);
+  transition:color .3s;
+}
+.faq-item summary::-webkit-details-marker{ display:none; }
+.faq-item summary::after{
+  content:'';
+  flex-shrink:0;
+  width:22px; height:22px;
+  background:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23135ba0' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'><line x1='12' y1='5' x2='12' y2='19'/><line x1='5' y1='12' x2='19' y2='12'/></svg>")
+    center / 16px no-repeat;
+  transition:transform .4s var(--ease);
+}
+.faq-item[open] summary::after{
+  transform:rotate(45deg);
+}
+.faq-item[open] summary{ color:var(--brand-blue); }
+.faq-body{
+  padding:0 26px 24px;
+  color:var(--muted);
+  font-size:.94rem;
+  font-weight:300;
+  line-height:1.7;
+  border-top:1px solid var(--line);
+  margin-top:-1px;
+  padding-top:20px;
+}
+
+/* ============================================================
+   CTA
+   ============================================================ */
+.cta{
+  background:var(--ink); color:var(--cream);
+  text-align:center;
+  padding:clamp(70px,9vw,110px) 0;
+}
+.cta .eyebrow-dark{
+  display:inline-block; margin:0 0 18px;
+  padding:6px 18px; background:#fff; color:var(--brand-blue);
+  font-size:.66rem; font-weight:600;
+  letter-spacing:.4em; text-transform:uppercase;
+  border-radius:100px;
+}
+.cta h2{ margin:0 0 18px; font-size:clamp(1.8rem,3.4vw,2.7rem); }
+.cta p{ margin:0 auto 34px; max-width:52ch; color:rgba(244,247,249,.62); font-weight:300; }
+.cta .btn.solid{ background:var(--brand-blue); border-color:var(--brand-blue); color:#fff; }
+.cta .btn.solid:hover{ background:var(--brand-red); border-color:var(--brand-red); transform:translateY(-2px); }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer{ background:#070b12; color:rgba(244,247,249,.62); padding:70px 0 34px; }
+.foot-grid{
+  display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:44px;
+  padding-bottom:44px; border-bottom:1px solid rgba(255,255,255,.1);
+}
+.foot-grid h4{
+  margin:0 0 18px; font-family:'Inter',sans-serif;
+  font-size:.68rem; letter-spacing:.3em; text-transform:uppercase;
+  color:#fff; font-weight:600;
+}
+.foot-grid ul{ list-style:none; margin:0; padding:0; display:grid; gap:11px; }
+.foot-grid a{ font-size:.92rem; font-weight:300; transition:color .3s; }
+.foot-grid a:hover{ color:var(--brand-red-light); }
+.foot-bottom{
+  display:flex; justify-content:space-between; flex-wrap:wrap;
+  gap:12px; padding-top:26px; font-size:.78rem;
+  color:rgba(244,247,249,.4);
+}
+
+/* ============================================================
+   FLOATING WHATSAPP BUTTON
+   ============================================================ */
+.wa-fab{
+  position:fixed;
+  z-index:90;
+  bottom:26px; right:26px;
+  display:flex; align-items:center; gap:12px;
+  padding:14px 22px 14px 16px;
+  background:var(--whatsapp);
+  color:#fff;
+  border-radius:100px;
+  font-size:.78rem; font-weight:600;
+  letter-spacing:.14em; text-transform:uppercase;
+  box-shadow:
+    0 12px 30px -8px rgba(37,211,102,.55),
+    0 0 0 0 rgba(37,211,102,.7);
+  animation:waPulse 2.8s infinite;
+  transition:transform .35s var(--ease), background .35s var(--ease);
+}
+.wa-fab:hover{
+  background:var(--whatsapp-dark);
+  transform:translateY(-3px) scale(1.03);
+}
+.wa-fab .wa-fab__icon{
+  width:34px; height:34px;
+  display:grid; place-items:center;
+  background:#fff; color:var(--whatsapp);
+  border-radius:50%;
+  flex-shrink:0;
+}
+.wa-fab .wa-fab__icon svg{ width:20px; height:20px; }
+@keyframes waPulse{
+  0%  { box-shadow: 0 12px 30px -8px rgba(37,211,102,.55), 0 0 0 0 rgba(37,211,102,.6); }
+  70% { box-shadow: 0 12px 30px -8px rgba(37,211,102,.55), 0 0 0 16px rgba(37,211,102,0); }
+  100%{ box-shadow: 0 12px 30px -8px rgba(37,211,102,.55), 0 0 0 0 rgba(37,211,102,0); }
+}
+
+/* reveal */
+.reveal{ opacity:0; transform:translateY(34px); transition:opacity 1s var(--ease), transform 1s var(--ease); }
+.reveal.in{ opacity:1; transform:none; }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width:1000px){
+  .contact-grid{ grid-template-columns:1fr; }
+  .faq-grid{ grid-template-columns:1fr; }
+}
+
+@media (max-width:900px){
+  .burger{ display:block; }
+
+  .nav{
+    position:fixed; inset:0 0 0 auto;
+    width:min(82vw,360px);
+    background:#0b1320;
+    flex-direction:column; align-items:flex-start; justify-content:center;
+    gap:26px; padding:0 44px;
+    transform:translateX(101%);
+    transition:transform .5s var(--ease);
+    box-shadow:-20px 0 60px rgba(0,0,0,.5);
+  }
+  .nav.open{ transform:none; }
+  .nav a{ font-size:1rem; letter-spacing:.14em; }
+
+  .page-hero{ height:60vh; min-height:420px; }
+  .page-hero .caption{ padding:0 7vw 10vh; }
+
+  .foot-grid{ grid-template-columns:1fr; gap:34px; }
+
+  .map-wrap{ height:620px; }
+  .map-card{
+    top:24px; left:24px; right:24px;
+    transform:none;
+    max-width:none;
+  }
+
+  .logo-name{ font-size:1.15rem; }
+  .logo-img{ height:42px; }
+}
+
+@media (max-width:600px){
+  .field-row{ grid-template-columns:1fr; }
+  .form-card{ padding:28px 22px; }
+
+  .wa-fab{
+    bottom:18px; right:18px;
+    padding:12px;
+    border-radius:50%;
+    gap:0;
+  }
+  .wa-fab .wa-fab__label{ display:none; }
+  .wa-fab .wa-fab__icon{ width:34px; height:34px; }
+
+  .logo-name{ font-size:1rem; }
+  .logo-img{ height:36px; }
+}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:.001ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.001ms !important;
+    scroll-behavior:auto !important;
+  }
+  .page-hero__img{ transform:none !important; }
+  .wa-fab{ animation:none !important; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ========================= HEADER ========================= -->
+<header class="site-header" id="header">
+  <div class="wrap nav-wrap">
+    <a href="index.html" class="logo">
+      <img src="logo.png" alt="Flash Photography logo" class="logo-img">
+      <span class="logo-name">
+        Flash <span class="name-light">Photography</span>
+      </span>
+    </a>
+
+    <nav class="nav" id="nav" aria-label="Main navigation">
+      <a href="index.html">Home</a>
+      <a href="about.html">About us</a>
+      <a href="services.html">Services</a>
+      <a href="training.html">Training</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="contact.html" class="active">Contact Us</a>
+    </nav>
+
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="nav">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ========================= PAGE HERO ========================= -->
+<section class="page-hero">
+  <img class="page-hero__img"
+       src="https://images.unsplash.com/photo-1423666639041-f56000c27a9a?auto=format&fit=crop&q=80&w=1920"
+       alt="Contact Flash Photography">
+  <div class="caption">
+    <p class="eyebrow">Contact Us</p>
+    <h1>Let's create something <em>together</em></h1>
+    <p class="sub">Book a shoot, order a print, reserve a training seat, or just say hello. We reply within 24 hours.</p>
+  </div>
+</section>
+
+<!-- ============================================================
+     CONTACT GRID — FORM + INFO
+     ============================================================ -->
+<section class="section-pad" id="form">
+  <div class="wrap contact-grid">
+
+    <!-- FORM -->
+    <div class="form-card reveal">
+      <p class="eyebrow-dark">Send a Message</p>
+      <h2>Tell us about your project</h2>
+      <p class="intro">
+        Fill in the form below and we'll get back to you within one business day.
+        For a faster response, use the WhatsApp button on the right.
+      </p>
+
+      <form id="contactForm" novalidate>
+        <div class="field-row">
+          <div class="field">
+            <label for="name">Full Name *</label>
+            <input type="text" id="name" name="name" placeholder="Your name" required>
+          </div>
+          <div class="field">
+            <label for="email">Email Address *</label>
+            <input type="email" id="email" name="email" placeholder="you@example.com" required>
+          </div>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="phone">Phone / WhatsApp</label>
+            <input type="tel" id="phone" name="phone" placeholder="+234 800 000 0000">
+          </div>
+          <div class="field">
+            <label for="service">I'm Interested In *</label>
+            <select id="service" name="service" required>
+              <option value="">Select a service</option>
+              <option>Photography</option>
+              <option>Videography</option>
+              <option>Printing</option>
+              <option>General Computer Training</option>
+              <option>Graphics Design Training</option>
+              <option>Photography Training</option>
+              <option>Computer Engineering Training</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="date">Preferred Date (optional)</label>
+          <input type="date" id="date" name="date">
+        </div>
+
+        <div class="field">
+          <label for="message">Your Message *</label>
+          <textarea id="message" name="message" placeholder="Tell us a bit about what you have in mind — the date, the location, the vibe..." required></textarea>
+        </div>
+
+        <button type="submit" class="btn primary full">Send Message</button>
+
+        <p id="formNote" style="margin:16px 0 0; font-size:.8rem; color:var(--muted); text-align:center;">
+          This form is a template. Connect it to your email service or Formspree to receive submissions.
+        </p>
+      </form>
+    </div>
+
+    <!-- INFO + WHATSAPP -->
+    <div class="info-stack reveal">
+
+      <!-- WhatsApp featured card -->
+      <a class="wa-card"
+         href="https://wa.me/2348000000000?text=Hello%20Flash%20Photography%2C%20I%27d%20like%20to%20place%20an%20order."
+         target="_blank" rel="noopener"
+         aria-label="Message us on WhatsApp">
+        <span class="wa-icon" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="currentColor">
+            <path d="M16 2.4C8.5 2.4 2.4 8.5 2.4 16c0 2.4.6 4.7 1.8 6.7L2.4 29.6l7.1-1.9c1.9 1 4.1 1.6 6.5 1.6 7.5 0 13.6-6.1 13.6-13.6S23.5 2.4 16 2.4zm0 24.7c-2.1 0-4.1-.6-5.9-1.6l-.4-.3-4.4 1.2 1.2-4.3-.3-.4c-1.1-1.8-1.7-3.9-1.7-6.1 0-6.5 5.3-11.7 11.7-11.7S28.1 9.5 28.1 16 22.8 27.1 16 27.1zm6.4-8.7c-.3-.2-2.1-1-2.4-1.2-.3-.1-.5-.2-.7.2s-.8 1-1 1.2c-.2.2-.4.2-.7.1-.3-.2-1.4-.5-2.7-1.7-1-.9-1.6-2-1.9-2.3-.2-.3 0-.5.1-.7.1-.1.3-.4.5-.6.1-.2.2-.4.3-.6.1-.2 0-.4 0-.5 0-.1-.7-1.8-1-2.4-.3-.7-.6-.6-.9-.6h-.7c-.2 0-.6.1-.9.4s-1.1 1.1-1.1 2.6 1.1 3.1 1.3 3.3c.1.2 2.2 3.3 5.2 4.6.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 2.1-.9 2.4-1.7.3-.8.3-1.5.2-1.7-.1-.1-.3-.2-.6-.4z"/>
+          </svg>
+        </span>
+        <div>
+          <h3>Chat on WhatsApp</h3>
+          <p>Fastest way to book. Send us a message and we'll reply in minutes during business hours.</p>
+          <span class="wa-action">Start a chat →</span>
+        </div>
+      </a>
+
+      <!-- Address -->
+      <div class="info-card">
+        <span class="info-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+            <circle cx="12" cy="10" r="3"/>
+          </svg>
+        </span>
+        <div>
+          <h4>Studio</h4>
+          <p>14 Adeola Street, Victoria Island, Lagos, Nigeria</p>
+          <span class="sub">Mon–Fri · 9am – 6pm</span>
+        </div>
+      </div>
+
+      <!-- Phone -->
+      <div class="info-card">
+        <span class="info-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/>
+          </svg>
+        </span>
+        <div>
+          <h4>Phone</h4>
+          <a href="tel:+2348000000000">+234 800 000 0000</a>
+          <span class="sub">Also on WhatsApp</span>
+        </div>
+      </div>
+
+      <!-- Email -->
+      <div class="info-card">
+        <span class="info-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+            <polyline points="22,6 12,13 2,6"/>
+          </svg>
+        </span>
+        <div>
+          <h4>Email</h4>
+          <a href="mailto:hello@flashphotography.com">hello@flashphotography.com</a>
+          <span class="sub">Replies within 24 hrs</span>
+        </div>
+      </div>
+
+      <!-- Socials -->
+      <div class="info-card">
+        <span class="info-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+          </svg>
+        </span>
+        <div>
+          <h4>Follow</h4>
+          <p>@flashphotography</p>
+          <span class="sub">Instagram · Behance · Pinterest · YouTube</span>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     MAP
+     ============================================================ -->
+<section class="map-wrap">
+  <iframe
+    title="Flash Photography studio location"
+    src="https://www.openstreetmap.org/export/embed.html?bbox=3.4100%2C6.4200%2C3.4400%2C6.4400&layer=mapnik&marker=6.4300%2C3.4250"
+    loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+  <div class="map-card reveal">
+    <p class="eyebrow-dark">Visit Us</p>
+    <h3>Our Studio</h3>
+    <p>Walk in during business hours, or book an appointment first so we can give you our full attention.</p>
+    <a href="https://maps.google.com/?q=Victoria+Island+Lagos" target="_blank" rel="noopener" class="btn primary">Get Directions</a>
+  </div>
+</section>
+
+<!-- ============================================================
+     FAQ
+     ============================================================ -->
+<section class="section-pad section--alt">
+  <div class="wrap faq-grid">
+    <div class="reveal">
+      <p class="eyebrow-dark">FAQ</p>
+      <h2 class="h2">Questions we get a <em>lot</em></h2>
+      <p class="lead">
+        If your question isn't covered here, message us on WhatsApp — we're quick to respond.
+      </p>
+    </div>
+
+    <div class="faq-list reveal">
+
+      <details class="faq-item" open>
+        <summary>How do I book a shoot?</summary>
+        <div class="faq-body">
+          Send us a message via the form or WhatsApp with your preferred date, the type of shoot, and your location. We'll reply with availability and a quote within 24 hours. A 40% deposit confirms the booking.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>How long until I receive my photos?</summary>
+        <div class="faq-body">
+          Weddings and events are delivered within 3 weeks. Portraits, product shoots and brand sessions within 10 days. Rush delivery is available for an extra fee.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Do you travel outside Lagos?</summary>
+        <div class="faq-body">
+          Yes — we shoot all over Nigeria and beyond. Travel within Lagos is included. Outside Lagos, we add a travel fee covering transport and accommodation, which we'll quote upfront.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Can I order prints without doing a shoot with you?</summary>
+        <div class="faq-body">
+          Absolutely. Send us the images you'd like printed (via email or WhatsApp) and tell us the size and finish you want. We'll quote, then print once you approve. Turnaround is 3–5 working days.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>What do I need for the training courses?</summary>
+        <div class="faq-body">
+          It depends on the course. For computer training and graphics design, you'll need your own laptop. For photography, a camera (any model). For computer engineering, a basic toolkit. Full details are sent once you enroll.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Do you offer payment plans?</summary>
+        <div class="faq-body">
+          Yes. Training courses can be split into two or three installments. For shoots and print orders above ₦300,000, we also offer flexible payment terms. Just ask.
+        </div>
+      </details>
+
+    </div>
+  </div>
+</section>
+
+<!-- ========================= CTA ========================= -->
+<section class="cta">
+  <div class="wrap reveal">
+    <p class="eyebrow-dark">Ready to start?</p>
+    <h2>Let's talk about your project</h2>
+    <p>Whether it's a shoot, a film, a print order or a training seat — we'd love to hear from you.</p>
+    <a href="https://wa.me/2348000000000?text=Hello%20Flash%20Photography%2C%20I%27d%20like%20to%20make%20an%20order."
+       target="_blank" rel="noopener"
+       class="btn solid">Message on WhatsApp</a>
+  </div>
+</section>
+
+<!-- ========================= FOOTER ========================= -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a href="index.html" class="logo" style="margin-bottom:18px; display:inline-flex;">
+          <img src="logo.png" alt="Flash Photography logo" class="logo-img">
+          <span class="logo-name">
+            Flash <span class="name-light">Photography</span>
+          </span>
+        </a>
+        <p style="margin:0; font-weight:300; max-width:34ch;">
+          14 Adeola Street, Victoria Island, Lagos<br>
+          hello@flashphotography.com<br>
+          +234 800 000 0000
+        </p>
+      </div>
+
+      <div>
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="about.html">About us</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="training.html">Training</a></li>
+          <li><a href="portfolio.html">Portfolio</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Follow</h4>
+        <ul>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">Behance</a></li>
+          <li><a href="#">Pinterest</a></li>
+          <li><a href="#">YouTube</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="foot-bottom">
+      <span>© <span id="year"></span> Flash Photography. All rights reserved.</span>
+      <span>Privacy Policy · Terms</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ========================= FLOATING WHATSAPP BUTTON ========================= -->
+<a class="wa-fab"
+   href="https://wa.me/2348000000000?text=Hello%20Flash%20Photography%2C%20I%27d%20like%20to%20place%20an%20order."
+   target="_blank" rel="noopener"
+   aria-label="Chat on WhatsApp">
+  <span class="wa-fab__icon" aria-hidden="true">
+    <svg viewBox="0 0 32 32" fill="currentColor">
+      <path d="M16 2.4C8.5 2.4 2.4 8.5 2.4 16c0 2.4.6 4.7 1.8 6.7L2.4 29.6l7.1-1.9c1.9 1 4.1 1.6 6.5 1.6 7.5 0 13.6-6.1 13.6-13.6S23.5 2.4 16 2.4zm0 24.7c-2.1 0-4.1-.6-5.9-1.6l-.4-.3-4.4 1.2 1.2-4.3-.3-.4c-1.1-1.8-1.7-3.9-1.7-6.1 0-6.5 5.3-11.7 11.7-11.7S28.1 9.5 28.1 16 22.8 27.1 16 27.1zm6.4-8.7c-.3-.2-2.1-1-2.4-1.2-.3-.1-.5-.2-.7.2s-.8 1-1 1.2c-.2.2-.4.2-.7.1-.3-.2-1.4-.5-2.7-1.7-1-.9-1.6-2-1.9-2.3-.2-.3 0-.5.1-.7.1-.1.3-.4.5-.6.1-.2.2-.4.3-.6.1-.2 0-.4 0-.5 0-.1-.7-1.8-1-2.4-.3-.7-.6-.6-.9-.6h-.7c-.2 0-.6.1-.9.4s-1.1 1.1-1.1 2.6 1.1 3.1 1.3 3.3c.1.2 2.2 3.3 5.2 4.6.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 2.1-.9 2.4-1.7.3-.8.3-1.5.2-1.7-.1-.1-.3-.2-.6-.4z"/>
+    </svg>
+  </span>
+  <span class="wa-fab__label">Book on WhatsApp</span>
+</a>
+
+<!-- ========================= SCRIPTS ========================= -->
+<script>
+(function () {
+  'use strict';
+
+  /* ---------- Header on scroll ---------- */
+  const header = document.getElementById('header');
+  const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 40);
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  /* ---------- Mobile menu ---------- */
+  const burger = document.getElementById('burger');
+  const nav    = document.getElementById('nav');
+  const closeMenu = () => {
+    nav.classList.remove('open');
+    burger.classList.remove('open');
+    burger.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('menu-open');
+  };
+  burger.addEventListener('click', () => {
+    const open = nav.classList.toggle('open');
+    burger.classList.toggle('open', open);
+    burger.setAttribute('aria-expanded', String(open));
+    document.body.classList.toggle('menu-open', open);
+  });
+  nav.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+
+  /* ---------- Contact form (demo handler) ---------- */
+  const form = document.getElementById('contactForm');
+  const formNote = document.getElementById('formNote');
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const name    = form.name.value.trim();
+      const email   = form.email.value.trim();
+      const service = form.service.value;
+      const message = form.message.value.trim();
+
+      // Basic validation
+      if (!name || !email || !service || !message) {
+        formNote.textContent = 'Please fill in all required fields.';
+        formNote.style.color = 'var(--brand-red)';
+        return;
+      }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        formNote.textContent = 'Please enter a valid email address.';
+        formNote.style.color = 'var(--brand-red)';
+        return;
+      }
+
+      formNote.textContent = 'Thanks, ' + name + '! We\u2019ll reply to ' + email + ' within 24 hours.';
+      formNote.style.color = 'var(--brand-blue)';
+      form.reset();
+
+      /* ============================================================
+         🔧 TO HOOK THIS FORM UP TO REAL EMAILS:
+         Replace the block above with one of these:
+
+         Option A — Formspree (easiest):
+           1. Sign up at formspree.io
+           2. Change <form> tag to: <form action="https://formspree.io/f/YOUR_ID" method="POST">
+           3. Delete the JS submit handler above.
+
+         Option B — Web3Forms:
+           Similar — get an access key and post to api.web3forms.com
+
+         Option C — Your own backend:
+           fetch('/api/contact', { method:'POST', body: new FormData(form) })
+      ============================================================ */
+    });
+  }
+
+  /* ---------- Reveal on scroll ---------- */
+  const revealEls = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+    revealEls.forEach(el => io.observe(el));
+  } else {
+    revealEls.forEach(el => el.classList.add('in'));
+  }
+
+  /* ---------- Year ---------- */
+  document.getElementById('year').textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
