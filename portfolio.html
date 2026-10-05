@@ -1,0 +1,1492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portfolio — Flash Photography</title>
+<meta name="description" content="Selected photography, videography and printing work — plus student results and testimonials from our training programmes.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   TOKENS
+   ============================================================ */
+:root{
+  --ink:        #0b1320;
+  --ink-soft:   #162233;
+  --cream:      #f4f7f9;
+  --muted:      #5e6f82;
+  --brand-blue: #135ba0;
+  --brand-red:  #88252a;
+  --brand-red-light: #a12c32;
+  --line:       rgba(11,19,32,.12);
+  --ease:       cubic-bezier(.22,.75,.28,1);
+}
+
+*,*::before,*::after{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; }
+body{
+  margin:0;
+  background:var(--cream);
+  color:var(--ink);
+  font-family:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
+  font-size:16px;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+body.menu-open{ overflow:hidden; }
+
+h1,h2,h3{ font-family:'Playfair Display',Georgia,serif; font-weight:600; line-height:1.12; }
+img{ display:block; max-width:100%; }
+a{ color:inherit; text-decoration:none; }
+button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; }
+
+.wrap{ width:min(1240px,92vw); margin-inline:auto; }
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+.site-header{
+  position:fixed; inset:0 0 auto 0; z-index:100;
+  padding:26px 0;
+  background:rgba(11,19,32,.85);
+  -webkit-backdrop-filter:blur(14px);
+  backdrop-filter:blur(14px);
+  transition:padding .45s var(--ease), background .45s var(--ease),
+             box-shadow .45s var(--ease);
+}
+.site-header.scrolled{
+  padding:14px 0;
+  background:rgba(11,19,32,.95);
+  box-shadow:0 1px 0 rgba(255,255,255,.09);
+}
+.nav-wrap{ display:flex; align-items:center; justify-content:space-between; gap:24px; }
+
+.logo{ display:flex; align-items:center; gap:14px; }
+.logo-img{
+  height:48px; width:auto; object-fit:contain;
+  border-radius:6px;
+  transition:height .4s var(--ease);
+}
+.site-header.scrolled .logo-img{ height:38px; }
+.logo-name{
+  font-family:'Playfair Display',Georgia,serif;
+  font-size:1.35rem; font-weight:600; letter-spacing:.04em;
+  line-height:1.05; color:#fff; white-space:nowrap;
+  text-shadow:0 2px 10px rgba(0,0,0,.45);
+  transition:font-size .4s var(--ease);
+}
+.site-header.scrolled .logo-name{ font-size:1.15rem; }
+.logo-name .name-light{ font-weight:400; font-style:italic; opacity:.95; }
+
+.nav{ display:flex; align-items:center; gap:38px; }
+.nav a{
+  position:relative; color:rgba(255,255,255,.86);
+  font-size:.76rem; font-weight:500; letter-spacing:.15em;
+  text-transform:uppercase; padding:6px 0;
+  transition:color .3s;
+}
+.nav a::after{
+  content:''; position:absolute; left:0; bottom:0;
+  width:100%; height:2px; background:var(--brand-red);
+  transform:scaleX(0); transform-origin:right;
+  transition:transform .4s var(--ease);
+}
+.nav a:hover,.nav a:focus-visible,.nav a.active{ color:#fff; }
+.nav a:hover::after,.nav a:focus-visible::after,.nav a.active::after{
+  transform:scaleX(1); transform-origin:left;
+}
+
+.burger{ display:none; width:34px; height:26px; position:relative; z-index:120; }
+.burger span{
+  position:absolute; left:0; width:100%; height:1.5px;
+  background:#fff; border-radius:2px;
+  transition:transform .4s var(--ease), opacity .3s, top .4s var(--ease);
+}
+.burger span:nth-child(1){ top:5px; }
+.burger span:nth-child(2){ top:12.5px; }
+.burger span:nth-child(3){ top:20px; }
+.burger.open span:nth-child(1){ top:12.5px; transform:rotate(45deg); }
+.burger.open span:nth-child(2){ opacity:0; }
+.burger.open span:nth-child(3){ top:12.5px; transform:rotate(-45deg); }
+
+/* ============================================================
+   PAGE HERO
+   ============================================================ */
+.page-hero{
+  position:relative;
+  height:72vh; min-height:500px;
+  overflow:hidden;
+  background:#000;
+  display:flex; align-items:flex-end;
+}
+.page-hero__img{
+  position:absolute; inset:0;
+  width:100%; height:100%; object-fit:cover;
+  animation:kenburns 12s ease-out forwards;
+}
+@keyframes kenburns{
+  from{ transform:scale(1.12) translate3d(1%,1%,0); }
+  to  { transform:scale(1.01) translate3d(0,0,0); }
+}
+.page-hero::after{
+  content:''; position:absolute; inset:0;
+  background:linear-gradient(to top, rgba(11,19,32,.94) 0%, rgba(11,19,32,.55) 45%, rgba(11,19,32,.7) 100%);
+}
+.page-hero .caption{
+  position:relative; z-index:2;
+  padding:0 6vw 12vh;
+  max-width:900px;
+  color:#fff;
+}
+.page-hero .eyebrow{
+  display:inline-block; margin:0 0 20px;
+  padding:6px 20px; background:#fff; color:var(--brand-blue);
+  font-size:.7rem; font-weight:600; letter-spacing:.42em;
+  text-transform:uppercase; border-radius:100px;
+}
+.page-hero h1{
+  margin:0 0 20px;
+  font-size:clamp(2.4rem, 6vw, 4.4rem);
+  letter-spacing:-.01em;
+}
+.page-hero h1 em{ font-style:italic; color:var(--brand-red-light); }
+.page-hero p.sub{
+  margin:0; max-width:52ch;
+  font-size:clamp(.95rem, 1.4vw, 1.1rem);
+  font-weight:300; color:rgba(255,255,255,.85);
+}
+
+/* ============================================================
+   QUICK JUMP
+   ============================================================ */
+.jump{
+  background:var(--ink); color:var(--cream);
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+.jump-inner{
+  display:flex; justify-content:center; gap:12px;
+  padding:26px 0; flex-wrap:wrap;
+}
+.jump a{
+  display:inline-flex; align-items:center; gap:.6em;
+  padding:11px 26px;
+  border:1px solid rgba(255,255,255,.25);
+  border-radius:100px;
+  font-size:.72rem; font-weight:600; letter-spacing:.2em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.85);
+  transition:background .35s var(--ease), border-color .35s var(--ease), color .35s;
+}
+.jump a:hover{
+  background:#fff; border-color:#fff; color:var(--brand-blue);
+}
+.jump a svg{ width:12px; height:12px; }
+
+/* ============================================================
+   SECTION BASICS
+   ============================================================ */
+section{ position:relative; }
+.section-pad{ padding:clamp(80px,11vw,130px) 0; }
+
+.section-head{
+  max-width:760px;
+  margin:0 0 56px;
+}
+.eyebrow-dark{
+  display:inline-block; margin:0 0 18px;
+  padding:6px 18px;
+  background:var(--brand-blue); color:#fff;
+  font-size:.66rem; font-weight:600;
+  letter-spacing:.4em; text-transform:uppercase;
+  border-radius:100px;
+}
+.h2{
+  margin:0 0 20px;
+  font-size:clamp(1.9rem,3.6vw,2.9rem);
+  letter-spacing:-.01em;
+}
+.h2 em{ font-style:italic; color:var(--brand-red-light); }
+.lead{
+  margin:0;
+  color:var(--muted); font-weight:300;
+  max-width:60ch;
+}
+
+/* Dark variants */
+.section--dark{ background:var(--ink); color:var(--cream); }
+.section--dark .eyebrow-dark{ background:#fff; color:var(--brand-blue); }
+.section--dark .lead{ color:rgba(244,247,249,.65); }
+.section--alt{ background:#ffffff; }
+
+/* ============================================================
+   PHOTOGRAPHY — MASONRY GRID
+   ============================================================ */
+.photo-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  grid-auto-rows:180px;
+  gap:14px;
+}
+.photo-tile{
+  position:relative;
+  overflow:hidden;
+  border-radius:2px;
+  cursor:pointer;
+  background:#000;
+}
+.photo-tile img{
+  width:100%; height:100%; object-fit:cover;
+  transition:transform 1s var(--ease), filter .6s;
+}
+.photo-tile:hover img{
+  transform:scale(1.07);
+  filter:brightness(.7);
+}
+.photo-tile::after{
+  content:'';
+  position:absolute; inset:0;
+  background:linear-gradient(to top, rgba(11,19,32,.85) 0%, transparent 60%);
+  opacity:0;
+  transition:opacity .45s var(--ease);
+}
+.photo-tile:hover::after{ opacity:1; }
+
+.photo-tile__caption{
+  position:absolute; z-index:2;
+  left:20px; right:20px; bottom:18px;
+  color:#fff;
+  opacity:0;
+  transform:translateY(12px);
+  transition:opacity .45s var(--ease), transform .45s var(--ease);
+}
+.photo-tile:hover .photo-tile__caption{
+  opacity:1; transform:none;
+}
+.photo-tile__caption .cat{
+  display:block;
+  font-size:.62rem; font-weight:600;
+  letter-spacing:.28em; text-transform:uppercase;
+  color:var(--brand-red-light);
+  margin-bottom:6px;
+}
+.photo-tile__caption .title{
+  display:block;
+  font-family:'Playfair Display',serif;
+  font-size:1.05rem;
+  line-height:1.2;
+}
+
+/* Grid spans */
+.tile-tall{ grid-row:span 2; }
+.tile-wide{ grid-column:span 2; }
+.tile-big{ grid-column:span 2; grid-row:span 2; }
+
+/* ============================================================
+   VIDEOGRAPHY — VIDEO CARDS
+   ============================================================ */
+.video-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:22px;
+}
+.video-card{
+  position:relative;
+  aspect-ratio:16/10;
+  border-radius:2px;
+  overflow:hidden;
+  cursor:pointer;
+  background:#000;
+}
+.video-card img{
+  width:100%; height:100%; object-fit:cover;
+  transition:transform 1s var(--ease), filter .6s;
+}
+.video-card:hover img{
+  transform:scale(1.05);
+  filter:brightness(.75);
+}
+.video-card::after{
+  content:'';
+  position:absolute; inset:0;
+  background:linear-gradient(to top, rgba(11,19,32,.9) 0%, transparent 65%);
+  z-index:1;
+}
+
+.play{
+  position:absolute;
+  z-index:3;
+  top:50%; left:50%;
+  transform:translate(-50%,-50%);
+  width:66px; height:66px;
+  display:grid; place-items:center;
+  border-radius:50%;
+  background:rgba(255,255,255,.18);
+  border:1.5px solid rgba(255,255,255,.7);
+  -webkit-backdrop-filter:blur(6px);
+  backdrop-filter:blur(6px);
+  color:#fff;
+  transition:background .35s var(--ease), transform .35s var(--ease), border-color .35s;
+}
+.video-card:hover .play{
+  background:#fff;
+  border-color:#fff;
+  color:var(--brand-blue);
+  transform:translate(-50%,-50%) scale(1.08);
+}
+.play svg{ width:22px; height:22px; margin-left:3px; }
+
+.video-meta{
+  position:absolute;
+  z-index:2;
+  left:24px; right:24px; bottom:22px;
+  color:#fff;
+}
+.video-meta .cat{
+  display:inline-block;
+  padding:4px 12px;
+  background:#fff; color:var(--brand-blue);
+  font-size:.6rem; font-weight:700;
+  letter-spacing:.24em; text-transform:uppercase;
+  border-radius:100px;
+  margin-bottom:10px;
+}
+.video-meta h3{
+  margin:0 0 4px;
+  font-size:1.24rem;
+  color:#fff;
+}
+.video-meta .dur{
+  font-size:.72rem;
+  color:rgba(255,255,255,.7);
+  letter-spacing:.14em;
+  text-transform:uppercase;
+}
+
+/* ============================================================
+   PRINTING — FRAMED GALLERY
+   ============================================================ */
+.print-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:32px;
+}
+.print-piece{
+  text-align:left;
+}
+.print-frame{
+  position:relative;
+  background:#ffffff;
+  padding:22px;
+  box-shadow:
+    0 1px 0 rgba(11,19,32,.05),
+    0 30px 60px -25px rgba(11,19,32,.25);
+  border-radius:2px;
+  overflow:hidden;
+  transition:transform .55s var(--ease), box-shadow .55s var(--ease);
+}
+.print-frame::before{
+  content:'';
+  position:absolute;
+  inset:10px;
+  border:1px solid rgba(11,19,32,.08);
+  pointer-events:none;
+}
+.print-piece:hover .print-frame{
+  transform:translateY(-6px);
+  box-shadow:
+    0 1px 0 rgba(11,19,32,.05),
+    0 40px 70px -25px rgba(11,19,32,.35);
+}
+.print-frame img{
+  width:100%;
+  aspect-ratio:4/5;
+  object-fit:cover;
+  display:block;
+}
+.print-info{
+  margin-top:22px;
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:16px;
+}
+.print-info h3{
+  margin:0 0 4px;
+  font-size:1.16rem;
+}
+.print-info .spec{
+  margin:0;
+  font-size:.78rem;
+  color:var(--muted);
+  letter-spacing:.06em;
+}
+.print-info .price-tag{
+  flex-shrink:0;
+  padding:5px 12px;
+  background:var(--brand-blue); color:#fff;
+  font-size:.68rem; font-weight:700;
+  letter-spacing:.14em;
+  border-radius:100px;
+}
+
+.section--dark .print-frame{
+  background:#fff;
+}
+.section--dark .print-info .spec{ color:rgba(244,247,249,.6); }
+.section--dark .print-info h3{ color:#fff; }
+
+/* ============================================================
+   TRAINING RESULTS — INTRO
+   ============================================================ */
+.results-intro{
+  text-align:center;
+  max-width:760px;
+  margin:0 auto 64px;
+}
+.results-intro .eyebrow-dark{
+  background:#fff; color:var(--brand-blue);
+}
+.results-intro .lead{
+  margin:0 auto;
+}
+
+/* Global stats row */
+.stats-row{
+  display:grid; grid-template-columns:repeat(4,1fr);
+  gap:36px; margin-bottom:76px;
+  padding-bottom:56px;
+  border-bottom:1px solid rgba(255,255,255,.12);
+}
+.stat{
+  text-align:center;
+}
+.stat-num{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2.2rem,4.4vw,3.4rem);
+  font-weight:600;
+  color:#fff;
+  line-height:1;
+  margin:0 0 12px;
+}
+.stat-num em{
+  font-style:italic;
+  color:var(--brand-red-light);
+  font-size:.6em;
+}
+.stat-label{
+  margin:0;
+  font-size:.66rem; font-weight:500;
+  letter-spacing:.32em; text-transform:uppercase;
+  color:rgba(244,247,249,.6);
+}
+
+/* ============================================================
+   COURSE RESULT BLOCK
+   ============================================================ */
+.result-block{
+  display:grid;
+  grid-template-columns:1fr 1.1fr;
+  gap:clamp(36px,5vw,80px);
+  align-items:center;
+  padding:56px 0;
+  border-bottom:1px solid rgba(255,255,255,.1);
+}
+.result-block:last-child{ border-bottom:0; }
+.result-block.flip .result-media{ order:2; }
+.result-block.flip .result-content{ order:1; }
+
+.result-media{
+  position:relative;
+  aspect-ratio:4/3;
+  border-radius:2px;
+  overflow:hidden;
+  background:#000;
+}
+.result-media img{
+  width:100%; height:100%; object-fit:cover;
+}
+.result-media::after{
+  content:'';
+  position:absolute; inset:0;
+  background:linear-gradient(to top, rgba(11,19,32,.75) 0%, transparent 55%);
+}
+.result-media .badge{
+  position:absolute;
+  top:18px; left:18px;
+  z-index:2;
+  padding:6px 14px;
+  background:#fff; color:var(--brand-blue);
+  font-size:.62rem; font-weight:700;
+  letter-spacing:.24em; text-transform:uppercase;
+  border-radius:100px;
+}
+.result-media .metric{
+  position:absolute;
+  z-index:2;
+  left:24px; bottom:22px;
+  color:#fff;
+}
+.result-media .metric .big{
+  display:block;
+  font-family:'Playfair Display',serif;
+  font-size:2.6rem;
+  font-weight:600;
+  line-height:1;
+}
+.result-media .metric .small{
+  display:block;
+  margin-top:6px;
+  font-size:.66rem;
+  letter-spacing:.28em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.75);
+}
+
+.result-content h3{
+  margin:0 0 8px;
+  font-size:clamp(1.5rem,2.4vw,2rem);
+  color:#fff;
+}
+.result-content .subhead{
+  margin:0 0 22px;
+  font-size:.7rem; font-weight:600;
+  letter-spacing:.32em; text-transform:uppercase;
+  color:var(--brand-red-light);
+}
+.result-content p{
+  margin:0 0 26px;
+  color:rgba(244,247,249,.7);
+  font-weight:300;
+  max-width:52ch;
+}
+
+.result-points{
+  list-style:none;
+  margin:0; padding:0;
+  display:grid; gap:12px;
+}
+.result-points li{
+  display:flex; gap:14px; align-items:flex-start;
+  font-size:.92rem;
+  color:rgba(244,247,249,.85);
+}
+.result-points li::before{
+  content:'';
+  flex-shrink:0;
+  width:20px; height:20px;
+  margin-top:3px;
+  border-radius:50%;
+  background:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23135ba0' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><polyline points='20 6 9 17 4 12'/></svg>")
+    center / 11px no-repeat,
+    #ffffff;
+}
+
+/* ============================================================
+   TESTIMONIALS
+   ============================================================ */
+.testi-section{
+  background:#ffffff;
+  padding:clamp(80px,11vw,130px) 0;
+}
+.testi-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:24px;
+}
+.testi{
+  position:relative;
+  background:var(--cream);
+  padding:36px 34px 30px;
+  border-radius:2px;
+  border:1px solid var(--line);
+  transition:transform .5s var(--ease), box-shadow .5s var(--ease),
+             border-color .5s var(--ease);
+}
+.testi:hover{
+  transform:translateY(-4px);
+  box-shadow:0 30px 60px -30px rgba(11,19,32,.25);
+  border-color:transparent;
+}
+.testi::before{
+  content:'"';
+  position:absolute;
+  top:14px; right:26px;
+  font-family:'Playfair Display',serif;
+  font-size:5rem;
+  line-height:1;
+  color:var(--brand-red-light);
+  opacity:.22;
+}
+.testi .course-tag{
+  display:inline-block;
+  margin-bottom:18px;
+  padding:4px 12px;
+  background:var(--brand-blue); color:#fff;
+  font-size:.6rem; font-weight:700;
+  letter-spacing:.22em; text-transform:uppercase;
+  border-radius:100px;
+}
+.testi .quote{
+  margin:0 0 22px;
+  font-size:.98rem;
+  color:var(--ink);
+  line-height:1.6;
+}
+.testi-author{
+  display:flex; align-items:center; gap:14px;
+  padding-top:22px;
+  border-top:1px solid var(--line);
+}
+.testi-author img{
+  width:46px; height:46px;
+  border-radius:50%;
+  object-fit:cover;
+  flex-shrink:0;
+}
+.testi-author .info{
+  min-width:0;
+}
+.testi-author .name{
+  margin:0;
+  font-size:.9rem; font-weight:600;
+  color:var(--ink);
+  line-height:1.2;
+}
+.testi-author .role{
+  margin:2px 0 0;
+  font-size:.72rem;
+  color:var(--muted);
+  letter-spacing:.06em;
+}
+
+/* ============================================================
+   CTA
+   ============================================================ */
+.cta{
+  background:var(--ink); color:var(--cream);
+  text-align:center;
+  padding:clamp(70px,9vw,110px) 0;
+}
+.cta .eyebrow-dark{
+  display:inline-block; margin:0 0 18px;
+  padding:6px 18px; background:#fff; color:var(--brand-blue);
+  font-size:.66rem; font-weight:600;
+  letter-spacing:.4em; text-transform:uppercase;
+  border-radius:100px;
+}
+.cta h2{ margin:0 0 18px; font-size:clamp(1.8rem,3.4vw,2.7rem); }
+.cta p{ margin:0 auto 34px; max-width:52ch; color:rgba(244,247,249,.62); font-weight:300; }
+
+.btn{
+  display:inline-flex; align-items:center; gap:.7em;
+  padding:15px 34px;
+  border-radius:100px;
+  font-size:.74rem; font-weight:600;
+  letter-spacing:.2em; text-transform:uppercase;
+  transition:background .4s var(--ease), border-color .4s var(--ease),
+             color .4s var(--ease), transform .4s var(--ease);
+}
+.btn.solid{ background:var(--brand-blue); border-color:var(--brand-blue); color:#fff; }
+.btn.solid:hover{ background:var(--brand-red); border-color:var(--brand-red); transform:translateY(-2px); }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer{ background:#070b12; color:rgba(244,247,249,.62); padding:70px 0 34px; }
+.foot-grid{
+  display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:44px;
+  padding-bottom:44px; border-bottom:1px solid rgba(255,255,255,.1);
+}
+.foot-grid h4{
+  margin:0 0 18px; font-family:'Inter',sans-serif;
+  font-size:.68rem; letter-spacing:.3em; text-transform:uppercase;
+  color:#fff; font-weight:600;
+}
+.foot-grid ul{ list-style:none; margin:0; padding:0; display:grid; gap:11px; }
+.foot-grid a{ font-size:.92rem; font-weight:300; transition:color .3s; }
+.foot-grid a:hover{ color:var(--brand-red-light); }
+.foot-bottom{
+  display:flex; justify-content:space-between; flex-wrap:wrap;
+  gap:12px; padding-top:26px; font-size:.78rem;
+  color:rgba(244,247,249,.4);
+}
+
+/* reveal */
+.reveal{ opacity:0; transform:translateY(34px); transition:opacity 1s var(--ease), transform 1s var(--ease); }
+.reveal.in{ opacity:1; transform:none; }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width:1000px){
+  .photo-grid{ grid-template-columns:repeat(2,1fr); }
+  .video-grid{ grid-template-columns:repeat(2,1fr); }
+  .print-grid{ grid-template-columns:repeat(2,1fr); }
+  .testi-grid{ grid-template-columns:repeat(2,1fr); }
+  .stats-row{ grid-template-columns:repeat(2,1fr); }
+}
+
+@media (max-width:900px){
+  .burger{ display:block; }
+
+  .nav{
+    position:fixed; inset:0 0 0 auto;
+    width:min(82vw,360px);
+    background:#0b1320;
+    flex-direction:column; align-items:flex-start; justify-content:center;
+    gap:26px; padding:0 44px;
+    transform:translateX(101%);
+    transition:transform .5s var(--ease);
+    box-shadow:-20px 0 60px rgba(0,0,0,.5);
+  }
+  .nav.open{ transform:none; }
+  .nav a{ font-size:1rem; letter-spacing:.14em; }
+
+  .page-hero{ height:60vh; min-height:420px; }
+  .page-hero .caption{ padding:0 7vw 10vh; }
+
+  .result-block{ grid-template-columns:1fr; gap:36px; padding:44px 0; }
+  .result-block.flip .result-media{ order:1; }
+  .result-block.flip .result-content{ order:2; }
+
+  .foot-grid{ grid-template-columns:1fr; gap:34px; }
+
+  .logo-name{ font-size:1.15rem; }
+  .logo-img{ height:42px; }
+}
+
+@media (max-width:600px){
+  .photo-grid{ grid-template-columns:1fr; grid-auto-rows:220px; }
+  .tile-wide, .tile-big{ grid-column:span 1; }
+  .video-grid{ grid-template-columns:1fr; }
+  .print-grid{ grid-template-columns:1fr; }
+  .testi-grid{ grid-template-columns:1fr; }
+  .stats-row{ grid-template-columns:1fr; gap:28px; }
+
+  .jump-inner{ gap:8px; padding:20px 0; }
+  .jump a{ padding:9px 18px; font-size:.66rem; letter-spacing:.14em; }
+
+  .logo-name{ font-size:1rem; }
+  .logo-img{ height:36px; }
+}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:.001ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.001ms !important;
+    scroll-behavior:auto !important;
+  }
+  .page-hero__img{ transform:none !important; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ========================= HEADER ========================= -->
+<header class="site-header" id="header">
+  <div class="wrap nav-wrap">
+    <a href="index.html" class="logo">
+      <img src="logo.png" alt="Flash Photography logo" class="logo-img">
+      <span class="logo-name">
+        Flash <span class="name-light">Photography</span>
+      </span>
+    </a>
+
+    <nav class="nav" id="nav" aria-label="Main navigation">
+      <a href="index.html">Home</a>
+      <a href="about.html">About us</a>
+      <a href="services.html">Services</a>
+      <a href="training.html">Training</a>
+      <a href="portfolio.html" class="active">Portfolio</a>
+      <a href="index.html#contact">Contact Us</a>
+    </nav>
+
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="nav">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ========================= PAGE HERO ========================= -->
+<section class="page-hero">
+  <img class="page-hero__img"
+       src="https://images.unsplash.com/photo-1554048612-b6a482bc67e5?auto=format&fit=crop&q=80&w=1920"
+       alt="Gallery of recent work">
+  <div class="caption">
+    <p class="eyebrow">Portfolio</p>
+    <h1>Work we're <em>proud</em> to show</h1>
+    <p class="sub">Selected photography, films and prints — plus the students who've built careers through our training.</p>
+  </div>
+</section>
+
+<!-- ========================= QUICK JUMP ========================= -->
+<nav class="jump" aria-label="Jump to a section">
+  <div class="jump-inner wrap">
+    <a href="#photography">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M3 9V7a2 2 0 0 1 2-2h2l1.5-2h7L17 5h2a2 2 0 0 1 2 2v2"/><path d="M21 9v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9"/></svg>
+      Photography
+    </a>
+    <a href="#videography">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+      Videography
+    </a>
+    <a href="#printing">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+      Printing
+    </a>
+    <a href="#training-results">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+      Training Results
+    </a>
+    <a href="#testimonials">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      Testimonials
+    </a>
+  </div>
+</nav>
+
+<!-- ============================================================
+     01 — PHOTOGRAPHY PORTFOLIO
+     ============================================================ -->
+<section class="section-pad section--alt" id="photography">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow-dark">01 — Photography</p>
+      <h2 class="h2">Frames that <em>hold</em> the moment</h2>
+      <p class="lead">
+        A selection of recent shoots — weddings, portraits, products and editorial.
+        Every image below was shot by our team and hand-edited in-house.
+      </p>
+    </div>
+
+    <div class="photo-grid reveal">
+      <!-- Row 1 -->
+      <a href="#" class="photo-tile tile-big" aria-label="Wedding — Lagos">
+        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=1200" alt="Wedding photography" loading="lazy">
+        <div class="photo-tile__caption">
+          <span class="cat">Wedding</span>
+          <span class="title">Bolanle &amp; Tunde — Lagos</span>
+        </div>
+      </a>
+      <a href="#" class="photo-tile tile-tall" aria-label="Portrait — editorial">
+        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=800" alt="Studio portrait" loading="lazy">
+        <div class="photo-tile__caption">
+          <span class="cat">Portrait</span>
+          <span class="title">Editorial series</span>
+        </div>
+      </a>
+      <a href="#" class="photo-tile" aria-label="Product photography">
+        <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&q=80&w=800" alt="Product photograph" loading="lazy">
+        <div class="photo-tile__caption">
+          <span class="cat">Product</span>
+          <span class="title">Timepiece campaign</span>
+        </div>
+      </a>
+
+      <!-- Row 2 -->
+      <a href="#" class="photo-tile tile-wide" aria-label="Wedding — outdoor">
+        <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&q=80&w=1200" alt="Outdoor wedding" loading="lazy">
+        <div class="photo-tile__caption">
+          <span class="cat">Wedding</span>
+          <span class="title">Golden hour reception</span>
+        </div>
+      </a>
+      <a href="#" class="photo-tile tile-tall" aria-label="Portrait — brand">
+        <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&q=80&w=800" alt="Brand portrait" loading="lazy">
+        <div class="photo-tile__caption">
+          <span class="cat">Branding</span>
+          <span class="title">Founder portraits</span>
+        </div>
+      </a>
+
+      <!-- Row 3 -->
+      <a href="#" class="photo-tile" aria-label="Editorial photograph">
+        <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&q=80&w=800" alt="Editorial photograph" loading="lazy">
+        <div class="photo-tile__caption">
+          <span class="cat">Editorial</span>
+          <span class="title">Magazine cover</span>
+        </div>
+      </a>
+      <a href="#" class="photo-tile" aria-label="Commercial photograph">
+        <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&q=80&w=800" alt="Commercial photograph" loading="lazy">
+        <div class="photo-tile__caption">
+          <span class="cat">Commercial</span>
+          <span class="title">Sneaker launch</span>
+        </div>
+      </a>
+      <a href="#" class="photo-tile" aria-label="Family photograph">
+        <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&q=80&w=800" alt="Family photograph" loading="lazy">
+        <div class="photo-tile__caption">
+          <span class="cat">Family</span>
+          <span class="title">At home session</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     02 — VIDEOGRAPHY PORTFOLIO
+     ============================================================ -->
+<section class="section-pad section--dark" id="videography">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow-dark">02 — Videography</p>
+      <h2 class="h2">Films that move <em>people</em></h2>
+      <p class="lead">
+        Highlight reels, brand stories and documentary edits — all shot on 4K
+        with original sound design and colour grading.
+      </p>
+    </div>
+
+    <div class="video-grid reveal">
+      <article class="video-card">
+        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=900" alt="Wedding film cover" loading="lazy">
+        <span class="play" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+        </span>
+        <div class="video-meta">
+          <span class="cat">Wedding Film</span>
+          <h3>Bolanle &amp; Tunde</h3>
+          <span class="dur">Highlight · 6:24</span>
+        </div>
+      </article>
+
+      <article class="video-card">
+        <img src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&q=80&w=900" alt="Brand film cover" loading="lazy">
+        <span class="play" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+        </span>
+        <div class="video-meta">
+          <span class="cat">Brand Story</span>
+          <h3>Lumine Skincare</h3>
+          <span class="dur">Founder film · 3:10</span>
+        </div>
+      </article>
+
+      <article class="video-card">
+        <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&q=80&w=900" alt="Event film cover" loading="lazy">
+        <span class="play" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+        </span>
+        <div class="video-meta">
+          <span class="cat">Event</span>
+          <h3>Tech Summit 2024</h3>
+          <span class="dur">Recap · 2:45</span>
+        </div>
+      </article>
+
+      <article class="video-card">
+        <img src="https://images.unsplash.com/photo-1585699324551-f6c309eedeca?auto=format&fit=crop&q=80&w=900" alt="Documentary cover" loading="lazy">
+        <span class="play" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+        </span>
+        <div class="video-meta">
+          <span class="cat">Documentary</span>
+          <h3>Hands of Yaba</h3>
+          <span class="dur">Short doc · 11:02</span>
+        </div>
+      </article>
+
+      <article class="video-card">
+        <img src="https://images.unsplash.com/photo-1551818255-e6e10975bc17?auto=format&fit=crop&q=80&w=900" alt="Product film cover" loading="lazy">
+        <span class="play" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+        </span>
+        <div class="video-meta">
+          <span class="cat">Product</span>
+          <h3>Nova Sneaker Drop</h3>
+          <span class="dur">Launch film · 1:30</span>
+        </div>
+      </article>
+
+      <article class="video-card">
+        <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&q=80&w=900" alt="Behind the scenes cover" loading="lazy">
+        <span class="play" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+        </span>
+        <div class="video-meta">
+          <span class="cat">Behind the scenes</span>
+          <h3>Studio Diaries</h3>
+          <span class="dur">Series · 4:12</span>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     03 — PRINTING PORTFOLIO
+     ============================================================ -->
+<section class="section-pad" id="printing">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow-dark">03 — Printing</p>
+      <h2 class="h2">Prints made to <em>last</em></h2>
+      <p class="lead">
+        Archival pigment prints, layflat albums and custom framing.
+        Every piece below left our studio ready to hang.
+      </p>
+    </div>
+
+    <div class="print-grid reveal">
+      <article class="print-piece">
+        <div class="print-frame">
+          <img src="https://images.unsplash.com/photo-1568667256549-094345857637?auto=format&fit=crop&q=80&w=900" alt="Fine art print in frame" loading="lazy">
+        </div>
+        <div class="print-info">
+          <div>
+            <h3>Fine-Art Print — A2</h3>
+            <p class="spec">Hahnemühle Photo Rag · Archival pigment</p>
+          </div>
+          <span class="price-tag">₦45,000</span>
+        </div>
+      </article>
+
+      <article class="print-piece">
+        <div class="print-frame">
+          <img src="https://images.unsplash.com/photo-1621962153892-23cee1b5f44e?auto=format&fit=crop&q=80&w=900" alt="Layflat wedding album" loading="lazy">
+        </div>
+        <div class="print-info">
+          <div>
+            <h3>Layflat Wedding Album</h3>
+            <p class="spec">30×30cm · Leather-bound · 40 pages</p>
+          </div>
+          <span class="price-tag">₦180,000</span>
+        </div>
+      </article>
+
+      <article class="print-piece">
+        <div class="print-frame">
+          <img src="https://images.unsplash.com/photo-1562408590-e32931084e23?auto=format&fit=crop&q=80&w=900" alt="Gallery wall prints" loading="lazy">
+        </div>
+        <div class="print-info">
+          <div>
+            <h3>Gallery Wall Set</h3>
+            <p class="spec">6 prints · Solid oak frames · Museum glass</p>
+          </div>
+          <span class="price-tag">₦250,000</span>
+        </div>
+      </article>
+
+      <article class="print-piece">
+        <div class="print-frame">
+          <img src="https://images.unsplash.com/photo-1545987796-200677ee1011?auto=format&fit=crop&q=80&w=900" alt="Large canvas print" loading="lazy">
+        </div>
+        <div class="print-info">
+          <div>
+            <h3>Large Canvas Wrap</h3>
+            <p class="spec">120×80cm · Matte canvas · Gallery-wrap edge</p>
+          </div>
+          <span class="price-tag">₦95,000</span>
+        </div>
+      </article>
+
+      <article class="print-piece">
+        <div class="print-frame">
+          <img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&q=80&w=900" alt="Portrait print set" loading="lazy">
+        </div>
+        <div class="print-info">
+          <div>
+            <h3>Portrait Print Collection</h3>
+            <p class="spec">Set of 3 · A3 · Canson Baryta paper</p>
+          </div>
+          <span class="price-tag">₦65,000</span>
+        </div>
+      </article>
+
+      <article class="print-piece">
+        <div class="print-frame">
+          <img src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&q=80&w=900" alt="Wall mural print" loading="lazy">
+        </div>
+        <div class="print-info">
+          <div>
+            <h3>Wall Mural Commission</h3>
+            <p class="spec">2m × 1.5m · Adhesive vinyl · Installation included</p>
+          </div>
+          <span class="price-tag">₦320,000</span>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     04 — TRAINING RESULTS
+     ============================================================ -->
+<section class="section-pad section--dark" id="training-results">
+  <div class="wrap">
+
+    <div class="results-intro reveal">
+      <p class="eyebrow-dark">04 — Training Results</p>
+      <h2 class="h2">What our students <em>achieve</em></h2>
+      <p class="lead">
+        We don't just teach — we track outcomes. Here's a snapshot of what graduates
+        from each programme have gone on to do within 12 months of finishing.
+      </p>
+    </div>
+
+    <!-- Global stats -->
+    <div class="stats-row reveal">
+      <div class="stat">
+        <p class="stat-num">900<em>+</em></p>
+        <p class="stat-label">Students Trained</p>
+      </div>
+      <div class="stat">
+        <p class="stat-num">82<em>%</em></p>
+        <p class="stat-label">Land Work or Clients</p>
+      </div>
+      <div class="stat">
+        <p class="stat-num">4.9<em>/5</em></p>
+        <p class="stat-label">Average Rating</p>
+      </div>
+      <div class="stat">
+        <p class="stat-num">18</p>
+        <p class="stat-label">Cohorts Per Year</p>
+      </div>
+    </div>
+
+    <!-- Course 1: Computer Training -->
+    <div class="result-block reveal">
+      <div class="result-media">
+        <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80&w=900" alt="Computer training students" loading="lazy">
+        <span class="badge">Computer Training</span>
+        <div class="metric">
+          <span class="big">92%</span>
+          <span class="small">Course Completion</span>
+        </div>
+      </div>
+      <div class="result-content">
+        <p class="subhead">Course 01</p>
+        <h3>General Computer Training</h3>
+        <p>
+          Most of our computer students start with no formal IT background.
+          Within three months of finishing, the majority are working in admin,
+          customer service or running their own small businesses with confidence.
+        </p>
+        <ul class="result-points">
+          <li><span><strong>71%</strong> moved into office or admin roles within 6 months.</span></li>
+          <li><span><strong>28</strong> students started businesses using the digital skills learned.</span></li>
+          <li><span><strong>100%</strong> passed the Microsoft Office certification exam.</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Course 2: Graphics Design -->
+    <div class="result-block flip reveal">
+      <div class="result-media">
+        <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&q=80&w=900" alt="Graphics design student work" loading="lazy">
+        <span class="badge">Graphics Design</span>
+        <div class="metric">
+          <span class="big">₦180k</span>
+          <span class="small">Avg. First Client</span>
+        </div>
+      </div>
+      <div class="result-content">
+        <p class="subhead">Course 02</p>
+        <h3>Graphics Design</h3>
+        <p>
+          Our design programme is portfolio-first. Every student leaves with at
+          least six real client projects, and most are freelancing before the
+          course even ends.
+        </p>
+        <ul class="result-points">
+          <li><span><strong>64%</strong> of graduates are freelancing full-time within 4 months.</span></li>
+          <li><span>Average first client payment: <strong>₦180,000</strong> per project.</span></li>
+          <li><span><strong>12</strong> students have gone on to work at established agencies.</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Course 3: Photography -->
+    <div class="result-block reveal">
+      <div class="result-media">
+        <img src="https://images.unsplash.com/photo-1502920917128-1aa500764cbd?auto=format&fit=crop&q=80&w=900" alt="Photography training student" loading="lazy">
+        <span class="badge">Photography</span>
+        <div class="metric">
+          <span class="big">78%</span>
+          <span class="small">Shooting Paid Work</span>
+        </div>
+      </div>
+      <div class="result-content">
+        <p class="subhead">Course 03</p>
+        <h3>Photography</h3>
+        <p>
+          Our photography students range from total beginners to hobbyists
+          ready to go pro. By the end of the six weeks they're shooting in
+          manual mode and delivering their first paid galleries.
+        </p>
+        <ul class="result-points">
+          <li><span><strong>78%</strong> are shooting paid work within 3 months of finishing.</span></li>
+          <li><span><strong>45</strong> students have gone on to launch their own photography studios.</span></li>
+          <li><span>Average first paid shoot booking: <strong>₦85,000</strong>.</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Course 4: Computer Engineering -->
+    <div class="result-block flip reveal">
+      <div class="result-media">
+        <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&q=80&w=900" alt="Computer engineering student" loading="lazy">
+        <span class="badge">Computer Engineering</span>
+        <div class="metric">
+          <span class="big">89%</span>
+          <span class="small">Working Technicians</span>
+        </div>
+      </div>
+      <div class="result-content">
+        <p class="subhead">Course 04</p>
+        <h3>Computer Engineering</h3>
+        <p>
+          Our engineering students leave with the tools to fix, build and
+          diagnose real hardware. Most are earning from repair work before
+          the course wraps up.
+        </p>
+        <ul class="result-points">
+          <li><span><strong>89%</strong> are working as technicians or running repair businesses.</span></li>
+          <li><span><strong>22</strong> students opened their own repair shops within 12 months.</span></li>
+          <li><span>Average monthly income after 6 months: <strong>₦220,000</strong>.</span></li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     05 — TESTIMONIALS
+     ============================================================ -->
+<section class="testi-section" id="testimonials">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow-dark">05 — Testimonials</p>
+      <h2 class="h2">Words from our <em>students</em></h2>
+      <p class="lead">
+        Real feedback from graduates across all four training programmes. Names
+        used with permission.
+      </p>
+    </div>
+
+    <div class="testi-grid reveal">
+
+      <!-- Testimonial 1 — Computer Training -->
+      <article class="testi">
+        <span class="course-tag">Computer Training</span>
+        <p class="quote">
+          I walked in not knowing how to attach a file to an email. Eight weeks
+          later I got a job as an administrative assistant. The classes are
+          small and the instructors actually sit with you until you get it.
+        </p>
+        <div class="testi-author">
+          <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=80&w=200&h=200" alt="Blessing O.">
+          <div class="info">
+            <p class="name">Blessing O.</p>
+            <p class="role">Admin Assistant, Lagos</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Testimonial 2 — Graphics Design -->
+      <article class="testi">
+        <span class="course-tag">Graphics Design</span>
+        <p class="quote">
+          The design course changed my life. I came in as an unemployed graduate
+          and left with a portfolio of six real client projects. I now design
+          full-time for three brands and I've never looked back.
+        </p>
+        <div class="testi-author">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200&h=200" alt="Tunde A.">
+          <div class="info">
+            <p class="name">Tunde A.</p>
+            <p class="role">Freelance Designer</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Testimonial 3 — Photography -->
+      <article class="testi">
+        <span class="course-tag">Photography</span>
+        <p class="quote">
+          I had a camera for two years and never took it off auto. Six weeks with
+          Flash and I was shooting my first paid wedding. They teach you how to
+          think, not just which buttons to press.
+        </p>
+        <div class="testi-author">
+          <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=200&h=200" alt="Chiamaka N.">
+          <div class="info">
+            <p class="name">Chiamaka N.</p>
+            <p class="role">Wedding Photographer</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Testimonial 4 — Computer Engineering -->
+      <article class="testi">
+        <span class="course-tag">Computer Engineering</span>
+        <p class="quote">
+          I enrolled because I wanted to fix my own laptop. By the end of the
+          course I had repaired twelve for friends and family — and now I have
+          my own repair shop in Ikeja. Best investment I've made.
+        </p>
+        <div class="testi-author">
+          <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=200&h=200" alt="Emeka O.">
+          <div class="info">
+            <p class="name">Emeka O.</p>
+            <p class="role">Repair Shop Owner, Ikeja</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Testimonial 5 — Graphics Design -->
+      <article class="testi">
+        <span class="course-tag">Graphics Design</span>
+        <p class="quote">
+          What I loved most was the honesty. They didn't just teach the software —
+          they taught us how to price, how to talk to clients, and how to say no
+          to bad projects. That's the part no one else teaches.
+        </p>
+        <div class="testi-author">
+          <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=200&h=200" alt="Ada N.">
+          <div class="info">
+            <p class="name">Ada N.</p>
+            <p class="role">Brand Designer</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Testimonial 6 — Photography -->
+      <article class="testi">
+        <span class="course-tag">Photography</span>
+        <p class="quote">
+          I flew in from Abuja every Saturday for this course. That's how good
+          it is. The instructors are working photographers, so everything they
+          teach is from real jobs — not textbooks.
+        </p>
+        <div class="testi-author">
+          <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=200&h=200" alt="Ibrahim S.">
+          <div class="info">
+            <p class="name">Ibrahim S.</p>
+            <p class="role">Portrait Photographer</p>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ========================= CTA ========================= -->
+<section class="cta">
+  <div class="wrap reveal">
+    <p class="eyebrow-dark">Let's work together</p>
+    <h2>Have a project in mind?</h2>
+    <p>Whether it's a shoot, a film, a print or a training seat — tell us the idea and we'll take it from there.</p>
+    <a href="index.html#contact" class="btn solid">Get in Touch</a>
+  </div>
+</section>
+
+<!-- ========================= FOOTER ========================= -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a href="index.html" class="logo" style="margin-bottom:18px; display:inline-flex;">
+          <img src="logo.png" alt="Flash Photography logo" class="logo-img">
+          <span class="logo-name">
+            Flash <span class="name-light">Photography</span>
+          </span>
+        </a>
+        <p style="margin:0; font-weight:300; max-width:34ch;">
+          14 Adeola Street, Victoria Island, Lagos<br>
+          hello@flashphotography.com<br>
+          +234 800 000 0000
+        </p>
+      </div>
+
+      <div>
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="about.html">About us</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="training.html">Training</a></li>
+          <li><a href="portfolio.html">Portfolio</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Follow</h4>
+        <ul>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">Behance</a></li>
+          <li><a href="#">Pinterest</a></li>
+          <li><a href="#">YouTube</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="foot-bottom">
+      <span>© <span id="year"></span> Flash Photography. All rights reserved.</span>
+      <span>Privacy Policy · Terms</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ========================= SCRIPTS ========================= -->
+<script>
+(function () {
+  'use strict';
+
+  /* ---------- Header on scroll ---------- */
+  const header = document.getElementById('header');
+  const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 40);
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  /* ---------- Mobile menu ---------- */
+  const burger = document.getElementById('burger');
+  const nav    = document.getElementById('nav');
+  const closeMenu = () => {
+    nav.classList.remove('open');
+    burger.classList.remove('open');
+    burger.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('menu-open');
+  };
+  burger.addEventListener('click', () => {
+    const open = nav.classList.toggle('open');
+    burger.classList.toggle('open', open);
+    burger.setAttribute('aria-expanded', String(open));
+    document.body.classList.toggle('menu-open', open);
+  });
+  nav.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+
+  /* ---------- Reveal on scroll ---------- */
+  const revealEls = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+    revealEls.forEach(el => io.observe(el));
+  } else {
+    revealEls.forEach(el => el.classList.add('in'));
+  }
+
+  /* ---------- Year ---------- */
+  document.getElementById('year').textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
