@@ -1,0 +1,1196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Training — Flash Photography</title>
+<meta name="description" content="Hands-on training in computer basics, graphics design, photography and computer engineering by Flash Photography.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   TOKENS
+   ============================================================ */
+:root{
+  --ink:        #0b1320;
+  --ink-soft:   #162233;
+  --cream:      #f4f7f9;
+  --muted:      #5e6f82;
+  --brand-blue: #135ba0;
+  --brand-red:  #88252a;
+  --brand-red-light: #a12c32;
+  --line:       rgba(11,19,32,.12);
+  --ease:       cubic-bezier(.22,.75,.28,1);
+}
+
+*,*::before,*::after{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; }
+body{
+  margin:0;
+  background:var(--cream);
+  color:var(--ink);
+  font-family:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
+  font-size:16px;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+body.menu-open{ overflow:hidden; }
+
+h1,h2,h3{ font-family:'Playfair Display',Georgia,serif; font-weight:600; line-height:1.12; }
+img{ display:block; max-width:100%; }
+a{ color:inherit; text-decoration:none; }
+button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; }
+
+.wrap{ width:min(1240px,92vw); margin-inline:auto; }
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+.site-header{
+  position:fixed; inset:0 0 auto 0; z-index:100;
+  padding:26px 0;
+  background:rgba(11,19,32,.85);
+  -webkit-backdrop-filter:blur(14px);
+  backdrop-filter:blur(14px);
+  transition:padding .45s var(--ease), background .45s var(--ease),
+             box-shadow .45s var(--ease);
+}
+.site-header.scrolled{
+  padding:14px 0;
+  background:rgba(11,19,32,.95);
+  box-shadow:0 1px 0 rgba(255,255,255,.09);
+}
+.nav-wrap{ display:flex; align-items:center; justify-content:space-between; gap:24px; }
+
+.logo{ display:flex; align-items:center; gap:14px; }
+.logo-img{
+  height:48px; width:auto; object-fit:contain;
+  border-radius:6px;
+  transition:height .4s var(--ease);
+}
+.site-header.scrolled .logo-img{ height:38px; }
+.logo-name{
+  font-family:'Playfair Display',Georgia,serif;
+  font-size:1.35rem; font-weight:600; letter-spacing:.04em;
+  line-height:1.05; color:#fff; white-space:nowrap;
+  text-shadow:0 2px 10px rgba(0,0,0,.45);
+  transition:font-size .4s var(--ease);
+}
+.site-header.scrolled .logo-name{ font-size:1.15rem; }
+.logo-name .name-light{ font-weight:400; font-style:italic; opacity:.95; }
+
+.nav{ display:flex; align-items:center; gap:38px; }
+.nav a{
+  position:relative; color:rgba(255,255,255,.86);
+  font-size:.76rem; font-weight:500; letter-spacing:.15em;
+  text-transform:uppercase; padding:6px 0;
+  transition:color .3s;
+}
+.nav a::after{
+  content:''; position:absolute; left:0; bottom:0;
+  width:100%; height:2px; background:var(--brand-red);
+  transform:scaleX(0); transform-origin:right;
+  transition:transform .4s var(--ease);
+}
+.nav a:hover,.nav a:focus-visible,.nav a.active{ color:#fff; }
+.nav a:hover::after,.nav a:focus-visible::after,.nav a.active::after{
+  transform:scaleX(1); transform-origin:left;
+}
+
+.burger{ display:none; width:34px; height:26px; position:relative; z-index:120; }
+.burger span{
+  position:absolute; left:0; width:100%; height:1.5px;
+  background:#fff; border-radius:2px;
+  transition:transform .4s var(--ease), opacity .3s, top .4s var(--ease);
+}
+.burger span:nth-child(1){ top:5px; }
+.burger span:nth-child(2){ top:12.5px; }
+.burger span:nth-child(3){ top:20px; }
+.burger.open span:nth-child(1){ top:12.5px; transform:rotate(45deg); }
+.burger.open span:nth-child(2){ opacity:0; }
+.burger.open span:nth-child(3){ top:12.5px; transform:rotate(-45deg); }
+
+/* ============================================================
+   PAGE HERO
+   ============================================================ */
+.page-hero{
+  position:relative;
+  height:72vh; min-height:500px;
+  overflow:hidden;
+  background:#000;
+  display:flex; align-items:flex-end;
+}
+.page-hero__img{
+  position:absolute; inset:0;
+  width:100%; height:100%; object-fit:cover;
+  animation:kenburns 12s ease-out forwards;
+}
+@keyframes kenburns{
+  from{ transform:scale(1.12) translate3d(1%,1%,0); }
+  to  { transform:scale(1.01) translate3d(0,0,0); }
+}
+.page-hero::after{
+  content:''; position:absolute; inset:0;
+  background:linear-gradient(to top, rgba(11,19,32,.94) 0%, rgba(11,19,32,.55) 45%, rgba(11,19,32,.7) 100%);
+}
+.page-hero .caption{
+  position:relative; z-index:2;
+  padding:0 6vw 12vh;
+  max-width:900px;
+  color:#fff;
+}
+.page-hero .eyebrow{
+  display:inline-block; margin:0 0 20px;
+  padding:6px 20px; background:#fff; color:var(--brand-blue);
+  font-size:.7rem; font-weight:600; letter-spacing:.42em;
+  text-transform:uppercase; border-radius:100px;
+}
+.page-hero h1{
+  margin:0 0 20px;
+  font-size:clamp(2.4rem, 6vw, 4.4rem);
+  letter-spacing:-.01em;
+}
+.page-hero h1 em{ font-style:italic; color:var(--brand-red-light); }
+.page-hero p.sub{
+  margin:0; max-width:52ch;
+  font-size:clamp(.95rem, 1.4vw, 1.1rem);
+  font-weight:300; color:rgba(255,255,255,.85);
+}
+
+/* ============================================================
+   QUICK JUMP
+   ============================================================ */
+.jump{
+  background:var(--ink); color:var(--cream);
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+.jump-inner{
+  display:flex; justify-content:center; gap:12px;
+  padding:26px 0; flex-wrap:wrap;
+}
+.jump a{
+  display:inline-flex; align-items:center; gap:.6em;
+  padding:11px 26px;
+  border:1px solid rgba(255,255,255,.25);
+  border-radius:100px;
+  font-size:.72rem; font-weight:600; letter-spacing:.2em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.85);
+  transition:background .35s var(--ease), border-color .35s var(--ease), color .35s;
+}
+.jump a:hover{
+  background:#fff; border-color:#fff; color:var(--brand-blue);
+}
+.jump a svg{ width:12px; height:12px; }
+
+/* ============================================================
+   INTRO STRIP
+   ============================================================ */
+.intro{
+  background:var(--cream);
+  padding:clamp(70px,9vw,110px) 0;
+  text-align:center;
+}
+.intro .eyebrow-dark{
+  display:inline-block; margin:0 0 18px;
+  padding:6px 18px;
+  background:var(--brand-blue); color:#fff;
+  font-size:.66rem; font-weight:600;
+  letter-spacing:.4em; text-transform:uppercase;
+  border-radius:100px;
+}
+.intro h2{
+  margin:0 0 22px;
+  font-size:clamp(1.9rem,3.6vw,2.9rem);
+  letter-spacing:-.01em;
+  max-width:20ch;
+  margin-inline:auto;
+}
+.intro h2 em{ font-style:italic; color:var(--brand-red-light); }
+.intro p{
+  margin:0 auto;
+  max-width:62ch;
+  color:var(--muted); font-weight:300;
+}
+
+/* ============================================================
+   SERVICE SECTION (base layout — same as services page)
+   ============================================================ */
+.section-pad{ padding:clamp(80px,11vw,130px) 0; }
+
+.service-grid{
+  display:grid; grid-template-columns:1.05fr 1fr;
+  gap:clamp(36px,6vw,90px);
+  align-items:center;
+}
+.service-grid.flip .service-media{ order:2; }
+.service-grid.flip .service-info{ order:1; }
+
+/* --- Mini slider --- */
+.slider{
+  position:relative;
+  aspect-ratio:4/5;
+  border-radius:2px;
+  overflow:hidden;
+  background:#000;
+}
+.slider__track{ position:absolute; inset:0; }
+.slider__slide{
+  position:absolute; inset:0;
+  opacity:0; visibility:hidden;
+  transition:opacity 1s var(--ease), visibility 1s;
+}
+.slider__slide.active{ opacity:1; visibility:visible; z-index:2; }
+.slider__slide img{
+  width:100%; height:100%; object-fit:cover;
+  transform:scale(1.04);
+}
+.slider__slide.active img{ animation:kenburns 7s ease-out forwards; }
+
+.slider__nav{
+  position:absolute; z-index:5;
+  bottom:20px; right:20px;
+  display:flex; gap:8px;
+}
+.slider__btn{
+  width:44px; height:44px;
+  display:grid; place-items:center;
+  border-radius:50%;
+  background:rgba(255,255,255,.15);
+  border:1px solid rgba(255,255,255,.35);
+  color:#fff;
+  -webkit-backdrop-filter:blur(8px);
+  backdrop-filter:blur(8px);
+  transition:background .3s, border-color .3s, transform .3s;
+}
+.slider__btn:hover{
+  background:#fff; border-color:#fff; color:var(--brand-blue);
+  transform:translateY(-2px);
+}
+.slider__btn svg{ width:14px; height:14px; }
+
+.slider__dots{
+  position:absolute; z-index:5;
+  bottom:24px; left:24px;
+  display:flex; gap:8px;
+}
+.slider__dot{
+  width:26px; height:2px; padding:0;
+  background:rgba(255,255,255,.35);
+  transition:background .35s, transform .35s;
+}
+.slider__dot:hover{ background:rgba(255,255,255,.7); }
+.slider__dot.active{ background:var(--brand-red-light); transform:scaleY(2); }
+
+.slider__progress{
+  position:absolute; z-index:5;
+  left:0; right:0; bottom:0;
+  height:2px;
+  background:rgba(255,255,255,.12);
+}
+.slider__progress span{
+  display:block; height:100%; width:0;
+  background:var(--brand-red-light);
+}
+
+.slider__tag{
+  position:absolute; z-index:5;
+  top:20px; left:20px;
+  padding:7px 16px;
+  background:#fff; color:var(--brand-blue);
+  font-size:.65rem; font-weight:700;
+  letter-spacing:.24em; text-transform:uppercase;
+  border-radius:100px;
+}
+
+/* --- Info side --- */
+.service-info .eyebrow-dark{
+  display:inline-block;
+  margin:0 0 18px;
+  padding:6px 18px;
+  background:var(--brand-blue); color:#fff;
+  font-size:.66rem; font-weight:600;
+  letter-spacing:.4em; text-transform:uppercase;
+  border-radius:100px;
+}
+.service-info h2{
+  margin:0 0 22px;
+  font-size:clamp(1.9rem,3.6vw,2.9rem);
+  letter-spacing:-.01em;
+}
+.service-info h2 em{ font-style:italic; color:var(--brand-red-light); }
+.service-info .lead{
+  margin:0 0 30px;
+  color:var(--muted); font-weight:300;
+  max-width:56ch;
+}
+
+.features{
+  list-style:none; margin:0 0 34px; padding:0;
+  display:grid; gap:14px;
+}
+.features li{
+  display:flex; gap:14px; align-items:flex-start;
+  font-size:.94rem; color:var(--ink);
+  font-weight:400;
+}
+.features li::before{
+  content:'';
+  flex-shrink:0;
+  width:20px; height:20px;
+  margin-top:3px;
+  border-radius:50%;
+  background:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><polyline points='20 6 9 17 4 12'/></svg>")
+    center / 11px no-repeat,
+    var(--brand-blue);
+}
+.features li strong{ font-weight:600; }
+
+.meta{
+  display:flex; align-items:center; gap:24px;
+  flex-wrap:wrap;
+  padding-top:24px;
+  border-top:1px solid var(--line);
+}
+.price{ display:flex; flex-direction:column; }
+.price .from{
+  font-size:.62rem; font-weight:600;
+  letter-spacing:.3em; text-transform:uppercase;
+  color:var(--muted);
+}
+.price .amount{
+  font-family:'Playfair Display',serif;
+  font-size:1.55rem; font-weight:600;
+  color:var(--ink);
+  line-height:1.1;
+}
+
+.btn{
+  display:inline-flex; align-items:center; gap:.7em;
+  padding:14px 30px;
+  border-radius:100px;
+  font-size:.72rem; font-weight:600;
+  letter-spacing:.2em; text-transform:uppercase;
+  transition:background .4s var(--ease), border-color .4s var(--ease),
+             color .4s var(--ease), transform .4s var(--ease);
+}
+.btn.primary{
+  background:var(--brand-blue); color:#fff;
+  border:1px solid var(--brand-blue);
+}
+.btn.primary:hover{
+  background:var(--brand-red); border-color:var(--brand-red);
+  transform:translateY(-2px);
+}
+.btn.ghost{
+  background:transparent; color:var(--ink);
+  border:1px solid var(--ink);
+}
+.btn.ghost:hover{
+  background:var(--ink); color:#fff;
+  transform:translateY(-2px);
+}
+
+/* --- Alternating backgrounds --- */
+.service--alt{ background:#ffffff; }
+.service--dark{
+  background:var(--ink); color:var(--cream);
+}
+.service--dark .service-info .eyebrow-dark{
+  background:#fff; color:var(--brand-blue);
+}
+.service--dark .service-info .lead{ color:rgba(244,247,249,.65); }
+.service--dark .features li{ color:rgba(244,247,249,.85); }
+.service--dark .features li::before{
+  background:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23135ba0' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><polyline points='20 6 9 17 4 12'/></svg>")
+    center / 11px no-repeat,
+    #ffffff;
+}
+.service--dark .meta{ border-top-color:rgba(255,255,255,.14); }
+.service--dark .price .from{ color:rgba(244,247,249,.55); }
+.service--dark .price .amount{ color:#fff; }
+
+/* ============================================================
+   FORMAT / SCHEDULE STRIP
+   ============================================================ */
+.formats{
+  background:var(--ink-soft); color:var(--cream);
+  padding:clamp(80px,10vw,120px) 0;
+}
+.formats .eyebrow-dark{
+  display:inline-block; margin:0 0 18px;
+  padding:6px 18px; background:#fff; color:var(--brand-blue);
+  font-size:.66rem; font-weight:600;
+  letter-spacing:.4em; text-transform:uppercase;
+  border-radius:100px;
+}
+.formats h2{
+  margin:0 0 22px;
+  font-size:clamp(1.9rem,3.6vw,2.9rem);
+  color:#fff;
+}
+.formats .lead{
+  margin:0 0 56px;
+  color:rgba(244,247,249,.62); font-weight:300;
+  max-width:60ch;
+}
+.formats-grid{
+  display:grid; grid-template-columns:repeat(3,1fr);
+  gap:1px; background:rgba(255,255,255,.1);
+  border:1px solid rgba(255,255,255,.1);
+}
+.format{
+  background:var(--ink-soft);
+  padding:clamp(32px,4vw,48px);
+  transition:background .4s var(--ease);
+}
+.format:hover{ background:#1a2a40; }
+.format .icon{
+  display:inline-grid; place-items:center;
+  width:52px; height:52px;
+  border-radius:50%;
+  background:#fff; color:var(--brand-blue);
+  margin-bottom:22px;
+}
+.format .icon svg{ width:22px; height:22px; }
+.format h3{
+  margin:0 0 12px; font-size:1.32rem; color:#fff;
+}
+.format p{
+  margin:0; font-size:.92rem; font-weight:300;
+  color:rgba(244,247,249,.65);
+}
+
+/* ============================================================
+   ENROLL STRIP
+   ============================================================ */
+.enroll{
+  background:#fff;
+  padding:clamp(70px,9vw,110px) 0;
+}
+.enroll-grid{
+  display:grid; grid-template-columns:1fr 1fr;
+  gap:clamp(36px,6vw,90px);
+  align-items:center;
+}
+.enroll .eyebrow-dark{
+  display:inline-block; margin:0 0 18px;
+  padding:6px 18px; background:var(--brand-blue); color:#fff;
+  font-size:.66rem; font-weight:600;
+  letter-spacing:.4em; text-transform:uppercase;
+  border-radius:100px;
+}
+.enroll h2{
+  margin:0 0 22px;
+  font-size:clamp(1.9rem,3.6vw,2.9rem);
+}
+.enroll h2 em{ font-style:italic; color:var(--brand-red-light); }
+.enroll p{
+  margin:0 0 22px;
+  color:var(--muted); font-weight:300;
+  max-width:56ch;
+}
+.enroll-list{
+  list-style:none; margin:0 0 30px; padding:0;
+  display:grid; gap:14px;
+}
+.enroll-list li{
+  display:flex; gap:14px; align-items:flex-start;
+  font-size:.94rem;
+}
+.enroll-list li::before{
+  content:'';
+  flex-shrink:0;
+  width:20px; height:20px;
+  margin-top:3px;
+  border-radius:50%;
+  background:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><polyline points='20 6 9 17 4 12'/></svg>")
+    center / 11px no-repeat,
+    var(--brand-blue);
+}
+.enroll-img{
+  width:100%;
+  aspect-ratio:4/5;
+  object-fit:cover;
+  border-radius:2px;
+}
+
+/* ============================================================
+   CTA
+   ============================================================ */
+.cta{
+  background:var(--ink); color:var(--cream);
+  text-align:center;
+  padding:clamp(70px,9vw,110px) 0;
+}
+.cta .eyebrow-dark{
+  display:inline-block; margin:0 0 18px;
+  padding:6px 18px; background:#fff; color:var(--brand-blue);
+  font-size:.66rem; font-weight:600;
+  letter-spacing:.4em; text-transform:uppercase;
+  border-radius:100px;
+}
+.cta h2{ margin:0 0 18px; font-size:clamp(1.8rem,3.4vw,2.7rem); }
+.cta p{ margin:0 auto 34px; max-width:52ch; color:rgba(244,247,249,.62); font-weight:300; }
+.cta .btn.solid{ background:var(--brand-blue); border-color:var(--brand-blue); color:#fff; }
+.cta .btn.solid:hover{ background:var(--brand-red); border-color:var(--brand-red); }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer{ background:#070b12; color:rgba(244,247,249,.62); padding:70px 0 34px; }
+.foot-grid{
+  display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:44px;
+  padding-bottom:44px; border-bottom:1px solid rgba(255,255,255,.1);
+}
+.foot-grid h4{
+  margin:0 0 18px; font-family:'Inter',sans-serif;
+  font-size:.68rem; letter-spacing:.3em; text-transform:uppercase;
+  color:#fff; font-weight:600;
+}
+.foot-grid ul{ list-style:none; margin:0; padding:0; display:grid; gap:11px; }
+.foot-grid a{ font-size:.92rem; font-weight:300; transition:color .3s; }
+.foot-grid a:hover{ color:var(--brand-red-light); }
+.foot-bottom{
+  display:flex; justify-content:space-between; flex-wrap:wrap;
+  gap:12px; padding-top:26px; font-size:.78rem;
+  color:rgba(244,247,249,.4);
+}
+
+/* reveal */
+.reveal{ opacity:0; transform:translateY(34px); transition:opacity 1s var(--ease), transform 1s var(--ease); }
+.reveal.in{ opacity:1; transform:none; }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width:900px){
+  .burger{ display:block; }
+
+  .nav{
+    position:fixed; inset:0 0 0 auto;
+    width:min(82vw,360px);
+    background:#0b1320;
+    flex-direction:column; align-items:flex-start; justify-content:center;
+    gap:26px; padding:0 44px;
+    transform:translateX(101%);
+    transition:transform .5s var(--ease);
+    box-shadow:-20px 0 60px rgba(0,0,0,.5);
+  }
+  .nav.open{ transform:none; }
+  .nav a{ font-size:1rem; letter-spacing:.14em; }
+
+  .page-hero{ height:60vh; min-height:420px; }
+  .page-hero .caption{ padding:0 7vw 10vh; }
+
+  .service-grid{ grid-template-columns:1fr; gap:44px; }
+  .service-grid.flip .service-media{ order:1; }
+  .service-grid.flip .service-info{ order:2; }
+  .slider{ aspect-ratio:16/11; }
+
+  .formats-grid{ grid-template-columns:1fr; }
+  .enroll-grid{ grid-template-columns:1fr; gap:44px; }
+  .enroll-img{ aspect-ratio:16/11; }
+  .foot-grid{ grid-template-columns:1fr; gap:34px; }
+
+  .logo-name{ font-size:1.15rem; }
+  .logo-img{ height:42px; }
+}
+
+@media (max-width:520px){
+  .jump-inner{ gap:8px; padding:20px 0; }
+  .jump a{ padding:9px 18px; font-size:.66rem; letter-spacing:.14em; }
+  .slider__nav{ bottom:14px; right:14px; }
+  .slider__dots{ bottom:18px; left:18px; }
+  .logo-name{ font-size:1rem; }
+  .logo-img{ height:36px; }
+  .meta{ gap:16px; }
+}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:.001ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.001ms !important;
+    scroll-behavior:auto !important;
+  }
+  .page-hero__img, .slider__slide img{ transform:none !important; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ========================= HEADER ========================= -->
+<header class="site-header" id="header">
+  <div class="wrap nav-wrap">
+    <a href="index.html" class="logo">
+      <img src="logo.png" alt="Flash Photography logo" class="logo-img">
+      <span class="logo-name">
+        Flash <span class="name-light">Photography</span>
+      </span>
+    </a>
+
+    <nav class="nav" id="nav" aria-label="Main navigation">
+      <a href="index.html">Home</a>
+      <a href="about.html">About us</a>
+      <a href="services.html">Services</a>
+      <a href="training.html" class="active">Training</a>
+      <a href="index.html#portfolio">Portfolio</a>
+      <a href="index.html#contact">Contact Us</a>
+    </nav>
+
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="nav">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ========================= PAGE HERO ========================= -->
+<section class="page-hero">
+  <img class="page-hero__img"
+       src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=1920"
+       alt="Students learning together">
+  <div class="caption">
+    <p class="eyebrow">Training</p>
+    <h1>Learn a skill that <em>pays</em> for life</h1>
+    <p class="sub">Hands-on, small-group training in four disciplines — taught by practitioners, not lecturers.</p>
+  </div>
+</section>
+
+<!-- ========================= QUICK JUMP ========================= -->
+<nav class="jump" aria-label="Jump to a course">
+  <div class="jump-inner wrap">
+    <a href="#computer">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="14" rx="2"/><line x1="8" y1="22" x2="16" y2="22"/><line x1="12" y1="18" x2="12" y2="22"/></svg>
+      Computer Training
+    </a>
+    <a href="#graphics">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>
+      Graphics Design
+    </a>
+    <a href="#photography-training">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M3 9V7a2 2 0 0 1 2-2h2l1.5-2h7L17 5h2a2 2 0 0 1 2 2v2"/><path d="M21 9v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9"/></svg>
+      Photography
+    </a>
+    <a href="#engineering">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+      Computer Engineering
+    </a>
+  </div>
+</nav>
+
+<!-- ========================= INTRO ========================= -->
+<section class="intro">
+  <div class="wrap reveal">
+    <p class="eyebrow-dark">Why train with us</p>
+    <h2>We teach the way we <em>wish</em> we'd been taught</h2>
+    <p>
+      All our courses are hands-on. You don't sit through slides — you build, shoot, design
+      and repair from day one. Classes are capped at 6 students so every question gets answered,
+      and every instructor is a working professional in the field they teach.
+    </p>
+  </div>
+</section>
+
+<!-- ============================================================
+     01 — GENERAL COMPUTER TRAINING
+     ============================================================ -->
+<section class="section-pad service--alt" id="computer">
+  <div class="wrap service-grid">
+
+    <div class="service-media reveal">
+      <div class="slider" data-slider data-autoplay="5500">
+        <span class="slider__tag">01 · Computer Training</span>
+
+        <div class="slider__track">
+          <div class="slider__slide active"><img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80&w=1200" alt="Computer training class" loading="lazy"></div>
+          <div class="slider__slide"><img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=1200" alt="Learning on a laptop" loading="lazy"></div>
+          <div class="slider__slide"><img src="https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&q=80&w=1200" alt="Student working at a computer" loading="lazy"></div>
+        </div>
+
+        <div class="slider__dots" data-dots></div>
+        <div class="slider__nav">
+          <button class="slider__btn" data-prev aria-label="Previous image">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <button class="slider__btn" data-next aria-label="Next image">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+          </button>
+        </div>
+        <div class="slider__progress"><span data-progress></span></div>
+      </div>
+    </div>
+
+    <div class="service-info reveal">
+      <p class="eyebrow-dark">01 — General Computer Training</p>
+      <h2>From zero to <em>confident</em> in 8 weeks</h2>
+      <p class="lead">
+        The perfect starting point for anyone who's never used a computer properly —
+        or who uses one every day but knows they're doing things the slow way.
+        Beginners are welcome; no prior experience required.
+      </p>
+
+      <ul class="features">
+        <li><span><strong>Windows &amp; macOS basics</strong> — files, folders, settings, shortcuts.</span></li>
+        <li><span><strong>Microsoft Office</strong> — Word, Excel, PowerPoint and Outlook, in depth.</span></li>
+        <li><span><strong>Internet &amp; email</strong> — safe browsing, cloud storage, professional email.</span></li>
+        <li><span><strong>Digital literacy</strong> — typing speed, cybersecurity basics, online payments.</span></li>
+      </ul>
+
+      <div class="meta">
+        <div class="price">
+          <span class="from">8-week course · from</span>
+          <span class="amount">₦60,000</span>
+        </div>
+        <a href="index.html#contact" class="btn primary">Enroll Now</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     02 — GRAPHICS DESIGN
+     ============================================================ -->
+<section class="section-pad service--dark" id="graphics">
+  <div class="wrap service-grid flip">
+
+    <div class="service-media reveal">
+      <div class="slider" data-slider data-autoplay="6000">
+        <span class="slider__tag">02 · Graphics Design</span>
+
+        <div class="slider__track">
+          <div class="slider__slide active"><img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&q=80&w=1200" alt="Graphic design workspace" loading="lazy"></div>
+          <div class="slider__slide"><img src="https://images.unsplash.com/photo-1558655146-9f40138edfeb?auto=format&fit=crop&q=80&w=1200" alt="Designer sketching ideas" loading="lazy"></div>
+          <div class="slider__slide"><img src="https://images.unsplash.com/photo-1609921212029-bb5a28e60960?auto=format&fit=crop&q=80&w=1200" alt="Branding mockup" loading="lazy"></div>
+        </div>
+
+        <div class="slider__dots" data-dots></div>
+        <div class="slider__nav">
+          <button class="slider__btn" data-prev aria-label="Previous image">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <button class="slider__btn" data-next aria-label="Next image">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+          </button>
+        </div>
+        <div class="slider__progress"><span data-progress></span></div>
+      </div>
+    </div>
+
+    <div class="service-info reveal">
+      <p class="eyebrow-dark">02 — Graphics Design</p>
+      <h2>Design that <em>communicates</em>, not decorates</h2>
+      <p class="lead">
+        A practical, portfolio-first course. You'll learn the tools, but more
+        importantly, you'll learn how to think like a designer — hierarchy,
+        contrast, colour and storytelling.
+      </p>
+
+      <ul class="features">
+        <li><span><strong>Core tools</strong> — Adobe Photoshop, Illustrator and InDesign.</span></li>
+        <li><span><strong>Design theory</strong> — colour, typography, layout, composition.</span></li>
+        <li><span><strong>Brand identity</strong> — logo design, style guides, brand books.</span></li>
+        <li><span><strong>Portfolio &amp; freelancing</strong> — pricing, client work, launching your brand.</span></li>
+      </ul>
+
+      <div class="meta">
+        <div class="price">
+          <span class="from">12-week course · from</span>
+          <span class="amount">₦120,000</span>
+        </div>
+        <a href="index.html#contact" class="btn primary">Enroll Now</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     03 — PHOTOGRAPHY TRAINING
+     ============================================================ -->
+<section class="section-pad service--alt" id="photography-training">
+  <div class="wrap service-grid">
+
+    <div class="service-media reveal">
+      <div class="slider" data-slider data-autoplay="5000">
+        <span class="slider__tag">03 · Photography</span>
+
+        <div class="slider__track">
+          <div class="slider__slide active"><img src="https://images.unsplash.com/photo-1502920917128-1aa500764cbd?auto=format&fit=crop&q=80&w=1200" alt="Photography workshop" loading="lazy"></div>
+          <div class="slider__slide"><img src="https://images.unsplash.com/photo-1452587925148-ce544e77e70d?auto=format&fit=crop&q=80&w=1200" alt="Camera settings class" loading="lazy"></div>
+          <div class="slider__slide"><img src="https://images.unsplash.com/photo-1552168324-d612d77725e3?auto=format&fit=crop&q=80&w=1200" alt="Students on location" loading="lazy"></div>
+        </div>
+
+        <div class="slider__dots" data-dots></div>
+        <div class="slider__nav">
+          <button class="slider__btn" data-prev aria-label="Previous image">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <button class="slider__btn" data-next aria-label="Next image">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+          </button>
+        </div>
+        <div class="slider__progress"><span data-progress></span></div>
+      </div>
+    </div>
+
+    <div class="service-info reveal">
+      <p class="eyebrow-dark">03 — Photography</p>
+      <h2>Take the camera off <em>auto</em> — forever</h2>
+      <p class="lead">
+        Learn to shoot with full control. We cover the technical side (exposure,
+        focus, light) and the creative side (composition, storytelling, editing)
+        in equal measure — so your photos start looking the way you imagined them.
+      </p>
+
+      <ul class="features">
+        <li><span><strong>Manual mode mastery</strong> — aperture, shutter, ISO, focus modes.</span></li>
+        <li><span><strong>Light &amp; composition</strong> — natural, artificial and studio lighting.</span></li>
+        <li><span><strong>Editing workflow</strong> — Adobe Lightroom and Photoshop for photographers.</span></li>
+        <li><span><strong>On-location shoots</strong> — real-world practice with real subjects.</span></li>
+      </ul>
+
+      <div class="meta">
+        <div class="price">
+          <span class="from">6-week course · from</span>
+          <span class="amount">₦90,000</span>
+        </div>
+        <a href="index.html#contact" class="btn primary">Enroll Now</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     04 — COMPUTER ENGINEERING
+     ============================================================ -->
+<section class="section-pad service--dark" id="engineering">
+  <div class="wrap service-grid flip">
+
+    <div class="service-media reveal">
+      <div class="slider" data-slider data-autoplay="5500">
+        <span class="slider__tag">04 · Computer Engineering</span>
+
+        <div class="slider__track">
+          <div class="slider__slide active"><img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&q=80&w=1200" alt="Computer repair workbench" loading="lazy"></div>
+          <div class="slider__slide"><img src="https://images.unsplash.com/photo-1591405351990-4726e331f141?auto=format&fit=crop&q=80&w=1200" alt="Circuit board repair" loading="lazy"></div>
+          <div class="slider__slide"><img src="https://images.unsplash.com/photo-1610465299996-30f240ac2b1c?auto=format&fit=crop&q=80&w=1200" alt="Laptop teardown" loading="lazy"></div>
+        </div>
+
+        <div class="slider__dots" data-dots></div>
+        <div class="slider__nav">
+          <button class="slider__btn" data-prev aria-label="Previous image">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <button class="slider__btn" data-next aria-label="Next image">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+          </button>
+        </div>
+        <div class="slider__progress"><span data-progress></span></div>
+      </div>
+    </div>
+
+    <div class="service-info reveal">
+      <p class="eyebrow-dark">04 — Computer Engineering</p>
+      <h2>Fix it, build it, <em>understand</em> it</h2>
+      <p class="lead">
+        A hands-on hardware and systems course for anyone who wants to repair,
+        upgrade and troubleshoot computers professionally. Ideal for technicians,
+        IT support staff, and anyone starting a repair business.
+      </p>
+
+      <ul class="features">
+        <li><span><strong>Hardware fundamentals</strong> — components, assembly, teardown, upgrades.</span></li>
+        <li><span><strong>Diagnostics &amp; repair</strong> — troubleshooting laptops, desktops and printers.</span></li>
+        <li><span><strong>Operating systems</strong> — Windows installation, drivers, recovery, dual-boot.</span></li>
+        <li><span><strong>Networking basics</strong> — routers, WiFi setup, small office networks.</span></li>
+      </ul>
+
+      <div class="meta">
+        <div class="price">
+          <span class="from">10-week course · from</span>
+          <span class="amount">₦150,000</span>
+        </div>
+        <a href="index.html#contact" class="btn primary">Enroll Now</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     FORMATS / HOW CLASSES RUN
+     ============================================================ -->
+<section class="formats">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="eyebrow-dark">Class formats</p>
+      <h2>Pick the format that fits your life</h2>
+      <p class="lead">Every course is available in three formats — same curriculum, same instructors, different schedules.</p>
+    </div>
+
+    <div class="formats-grid reveal">
+      <div class="format">
+        <span class="icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </span>
+        <h3>On-site classes</h3>
+        <p>Weekday mornings or Saturday classes at our Lagos studio. Small groups of 6, full hands-on access to equipment.</p>
+      </div>
+      <div class="format">
+        <span class="icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="14" rx="2"/><line x1="8" y1="22" x2="16" y2="22"/><line x1="12" y1="18" x2="12" y2="22"/></svg>
+        </span>
+        <h3>Live online</h3>
+        <p>Join every class live via Zoom with recordings available for life. Ideal if you're outside Lagos or short on travel time.</p>
+      </div>
+      <div class="format">
+        <span class="icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </span>
+        <h3>One-to-one</h3>
+        <p>Fully personalised mentoring at your own pace. Perfect for professionals who need a custom curriculum.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     ENROLL / WHAT YOU GET
+     ============================================================ -->
+<section class="enroll">
+  <div class="wrap enroll-grid">
+    <div class="reveal">
+      <p class="eyebrow-dark">What you get</p>
+      <h2>Everything you need to <em>finish</em> — and to work</h2>
+      <p>
+        Every course includes the same set of extras — no hidden fees, no
+        "premium tier" upsells. We'd rather you just focus on learning.
+      </p>
+
+      <ul class="enroll-list">
+        <li><span><strong>Certificate of completion</strong> — signed and verifiable.</span></li>
+        <li><span><strong>Lifetime access to recordings</strong> and course materials.</span></li>
+        <li><span><strong>Real projects for your portfolio</strong> — not just exercises.</span></li>
+        <li><span><strong>Free retake</strong> of the course within 12 months, if you need it.</span></li>
+        <li><span><strong>Job &amp; freelance support</strong> — CV reviews, client leads, referrals.</span></li>
+      </ul>
+
+      <a href="index.html#contact" class="btn primary">Reserve a Seat</a>
+    </div>
+
+    <div class="reveal">
+      <img class="enroll-img"
+           src="https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&q=80&w=1000&h=1250"
+           alt="Students collaborating in class" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<!-- ========================= CTA ========================= -->
+<section class="cta">
+  <div class="wrap reveal">
+    <p class="eyebrow-dark">Next cohort</p>
+    <h2>Classes fill up fast</h2>
+    <p>New cohorts start on the first Monday of every month. Send us a message and we'll hold your seat.</p>
+    <a href="index.html#contact" class="btn solid">Talk to an Instructor</a>
+  </div>
+</section>
+
+<!-- ========================= FOOTER ========================= -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a href="index.html" class="logo" style="margin-bottom:18px; display:inline-flex;">
+          <img src="logo.png" alt="Flash Photography logo" class="logo-img">
+          <span class="logo-name">
+            Flash <span class="name-light">Photography</span>
+          </span>
+        </a>
+        <p style="margin:0; font-weight:300; max-width:34ch;">
+          14 Adeola Street, Victoria Island, Lagos<br>
+          hello@flashphotography.com<br>
+          +234 800 000 0000
+        </p>
+      </div>
+
+      <div>
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="about.html">About us</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="training.html">Training</a></li>
+          <li><a href="index.html#portfolio">Portfolio</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Follow</h4>
+        <ul>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">Behance</a></li>
+          <li><a href="#">Pinterest</a></li>
+          <li><a href="#">YouTube</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="foot-bottom">
+      <span>© <span id="year"></span> Flash Photography. All rights reserved.</span>
+      <span>Privacy Policy · Terms</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ========================= SCRIPTS ========================= -->
+<script>
+(function () {
+  'use strict';
+
+  /* ---------- Header on scroll ---------- */
+  const header = document.getElementById('header');
+  const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 40);
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  /* ---------- Mobile menu ---------- */
+  const burger = document.getElementById('burger');
+  const nav    = document.getElementById('nav');
+  const closeMenu = () => {
+    nav.classList.remove('open');
+    burger.classList.remove('open');
+    burger.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('menu-open');
+  };
+  burger.addEventListener('click', () => {
+    const open = nav.classList.toggle('open');
+    burger.classList.toggle('open', open);
+    burger.setAttribute('aria-expanded', String(open));
+    document.body.classList.toggle('menu-open', open);
+  });
+  nav.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+
+  /* ---------- Mini sliders (works on every .slider) ---------- */
+  document.querySelectorAll('[data-slider]').forEach(function (slider) {
+    const slides     = Array.from(slider.querySelectorAll('.slider__slide'));
+    const dotsWrap   = slider.querySelector('[data-dots]');
+    const progress   = slider.querySelector('[data-progress]');
+    const btnPrev    = slider.querySelector('[data-prev]');
+    const btnNext    = slider.querySelector('[data-next]');
+    const DURATION   = parseInt(slider.dataset.autoplay || '5500', 10);
+
+    let current = 0;
+    let timer   = null;
+    let paused  = false;
+
+    const dots = slides.map((_, i) => {
+      const b = document.createElement('button');
+      b.className = 'slider__dot' + (i === 0 ? ' active' : '');
+      b.type = 'button';
+      b.setAttribute('aria-label', 'Go to image ' + (i + 1));
+      b.addEventListener('click', () => go(i));
+      dotsWrap.appendChild(b);
+      return b;
+    });
+
+    function runProgress() {
+      if (!progress) return;
+      progress.style.transition = 'none';
+      progress.style.width = '0%';
+      void progress.offsetWidth;
+      progress.style.transition = 'width ' + DURATION + 'ms linear';
+      progress.style.width = '100%';
+    }
+    function stopProgress() {
+      if (!progress) return;
+      const w = getComputedStyle(progress).width;
+      progress.style.transition = 'none';
+      progress.style.width = w;
+    }
+
+    function schedule() {
+      clearTimeout(timer);
+      if (paused) return;
+      runProgress();
+      timer = setTimeout(() => go(current + 1), DURATION);
+    }
+
+    function go(index) {
+      const next = (index + slides.length) % slides.length;
+      if (next === current) return;
+
+      slides[current].classList.remove('active');
+      dots[current].classList.remove('active');
+
+      current = next;
+
+      slides[current].classList.add('active');
+      dots[current].classList.add('active');
+
+      schedule();
+    }
+
+    if (btnNext) btnNext.addEventListener('click', () => go(current + 1));
+    if (btnPrev) btnPrev.addEventListener('click', () => go(current - 1));
+
+    let startX = 0, tracking = false;
+    slider.addEventListener('touchstart', e => {
+      startX = e.touches[0].clientX; tracking = true;
+    }, { passive: true });
+    slider.addEventListener('touchend', e => {
+      if (!tracking) return;
+      tracking = false;
+      const dx = e.changedTouches[0].clientX - startX;
+      if (Math.abs(dx) > 45) dx < 0 ? go(current + 1) : go(current - 1);
+    }, { passive: true });
+
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver(entries => {
+        entries.forEach(en => {
+          if (en.isIntersecting) {
+            paused = false; schedule();
+          } else {
+            paused = true; clearTimeout(timer); stopProgress();
+          }
+        });
+      }, { threshold: 0.25 });
+      io.observe(slider);
+    } else {
+      schedule();
+    }
+  });
+
+  /* ---------- Reveal on scroll ---------- */
+  const revealEls = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+    revealEls.forEach(el => io.observe(el));
+  } else {
+    revealEls.forEach(el => el.classList.add('in'));
+  }
+
+  /* ---------- Year ---------- */
+  document.getElementById('year').textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
